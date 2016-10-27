@@ -1,0 +1,11 @@
+<persistence-unit name="musicalshop" transaction-type="RESOURCE_LOCAL">
+    <provider> org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>src.main.java.ConnectToDB.InstrumentBean</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/myDBtest"/>
+        <property name="javax.persistence.jdbc.password" value="darya"/>
+        <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+        <property name="javax.persistence.jdbc.user" value="darya"/>
+    </properties>
+</persistence-unit>

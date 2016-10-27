@@ -1,0 +1,398 @@
+body {
+    background: #f3f2f3;
+    color: #000000;
+    font-family: Trebuchet MS, Arial, Times New Roman;
+    font-size: 12px;
+}
+
+#container {
+    background: url("violinall.jpg");
+    margin: 20px auto;
+    width: 1100px;
+    height: 850px;
+}
+
+#header {
+    height: 150px;
+    width: 1100px;
+}
+
+.lang:hover{
+    cursor: pointer;
+}
+
+#butEn{
+    background: url("en.png");
+    position: absolute;
+    top:6%;
+    left:87%;
+}
+
+#butRu{
+    background: url("ru.png");
+    position: absolute;
+    top:6%;
+    left:84%;
+}
+
+#butFr{
+    background: url("fr.png");
+    position: absolute;
+    top:6%;
+    left:81%;
+}
+
+.butbucket{
+    width: 70px;
+    height: 70px;
+    background: url("bucket1.png");
+    border: none;
+    outline: none;
+    position: relative;
+    right: -50px;
+    top: 10px;
+}
+
+.amountOfInstrumentsInBucket{
+    width: 40px;
+    position: relative;
+    left: 600px;
+    top:-280px;
+}
+
+button.butbucket:hover{
+    cursor: pointer;
+}
+
+button.login:hover{
+    cursor: pointer;
+}
+
+.miniAmount{
+    width:25px;
+    height: 25px;
+    position: relative;
+    top:-15px;
+    left:-15px;
+    background-color: red;
+    border-radius: 10px;
+    border-color: #dd904e;
+    outline: none;
+    display: none;
+}
+
+.historyOfBuying{
+    width: 65px;
+    height: 65px;
+    position: relative;
+    border-color: #4b000a;
+    outline:none;
+    left:75px;
+    top:-20px;
+    background: darkred;
+    color: #ffe6a9;
+}
+
+.historyOfBuying:hover{
+    cursor: pointer;
+}
+
+.login{
+    width: 70px;
+    height: 70px;
+    background: url("login.png");
+    background-size: 100%;
+    border: none;
+    outline: none;
+    position: relative;
+    right: -70px;
+    top: 10px;
+}
+
+.lang{
+    width: 35px;
+    height: 35px;
+    background-size: 100%;
+    border: none;
+    outline-color: #7a4930;
+    border-radius: 30px;
+
+}
+
+#allshopname{
+    display: inline-block;
+}
+
+#buy-button:hover{
+    cursor: pointer;
+}
+
+h1{
+    text-shadow:black -5px -5px 2px;
+    font-size :80px;
+    color: #d2d0d2;
+    margin-left : 40px;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+
+h2{
+    text-shadow:rgb(68, 40, 28) -2px -2px 2px;
+    font-size: 30px;
+    color: rgba(255, 179, 128, 0.99);
+    margin-left: 40px;
+    margin-top: 0;
+}
+
+.catal {
+    background: #a22025;
+    color: #ffb380;
+    font-size: 20px;
+    border-radius: 5px;
+    width: 250px;
+    height: 30px;
+    outline: none;
+    text-align: center;
+    margin-right: 10px;
+}
+
+ul.dropdown,
+ul.dropdown-inside,ul.dropdown-top {
+    list-style-type: none;
+}
+
+ul.dropdown a.dropdown-top{
+}
+
+ul.dropdown li{
+    position: relative;
+}
+
+a{
+    text-decoration: none;
+}
+
+.menuSubtype{
+    background: none;
+    outline:none;
+    border: none;
+    font-size: 20px;
+    font-style: inherit;
+    color : #91825e;
+}
+
+
+.menuSubtype:hover{
+    cursor: pointer;
+}
+.menuType{
+    background: none;
+    outline:none;
+    border: none;
+    color: #ffe6a9;
+    font-size: 22px;
+    font-style: inherit;
+}
+
+.menuType:hover{
+    cursor: pointer;
+}
+#menu {
+    background: #333333;
+    float: left;
+    width: 250px;
+    height: 650px;
+}
+.content {
+    background: rgba(145, 130, 94, 0.5);
+    float: right;
+    width: 850px;
+    height: 650px;
+
+}
+#content1{
+    margin: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.model{
+    height: 230px;
+    background-color: rgba(59, 0, 0, 0.5);
+    width: 90%;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 10px;
+    float: left;
+    position: relative;
+}
+.imageInMiniPage{
+    margin-left:15px;
+    margin-top:15px;
+}
+
+.nameInMiniPage{
+    position:relative;
+    margin-left: 250px;
+    margin-top: -200px;
+    font-size: 25px;
+    color: #ffe6a9;
+}
+
+.forwardToBucket{
+    position: relative;
+    top: -310px;
+    left:565px;
+    width: 80px;
+    height: 80px;
+    outline: none;
+    background-color: darkred;
+    border-color: #390000;
+    font-size: 20px;
+    color: #fff8f1;
+    font-style: inherit;
+    text-align: center;
+    border-radius: 40px;
+}
+
+.forwardToBucket:hover{
+    cursor: pointer;
+}
+
+.descriptionInMiniPage{
+    position:relative;
+    margin-left: 230px;
+    margin-top:-20px;
+    color: rgba(199, 175, 129, 0.9);
+    font-size: 18px;
+    width: 400px;
+    height: 190px;
+    text-indent: 5%;
+}
+
+.buyInMiniPage{
+    width: 70px;
+    height: 70px;
+    background: url("bucket1.png");
+    border:none;
+    outline: darkred;
+    position: relative;
+    left: 660px;
+    top: -130px;
+}
+
+.buyInMiniPage:hover::after {
+    content: attr(data-title);
+}
+
+.buyInMiniPage:hover{
+    cursor: pointer;
+}
+
+.priceInMiniPage{
+    position: relative;
+    font-size: 35px;
+    left: 650px;
+    top: -300px;
+    color: coral;
+}
+#image{
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.overlay{
+    display:none;
+    position: absolute;
+    top: 249px;
+    left: 405px;
+
+}
+a:hover .overlay{
+    display: block;
+}
+
+
+#instrumentname{
+    text-align: center;
+    font-size: 25px;
+    font-style: italic;
+    color: #000000;
+    background-color: #91825e;
+}
+
+button.buy-button{
+    position: relative;
+    top: -610px;
+    left: 690px;
+    background-color: darkred;
+    border-color: #390000;
+    border-radius: 20px;
+    width: 150px;
+    height: 49px;
+    font-size: 30px;
+    color: #d0bc89;
+    outline: none;
+}
+
+button.buy-button:hover{
+    cursor: pointer;
+}
+
+p.price{
+    position: relative;
+    top: -530px;
+    left: 550px;
+    font-size: 35px;
+    color: #ffe6a9;
+    font-style: inherit;
+}
+
+div.right{
+    position: relative;
+    top: -600px;
+    left: 535px;
+}
+.but1{
+    width: 100px;
+    height: 60px;
+    background: #333333;
+    opacity: 0.9;
+    color: #ffe6a9;
+    font-size: 18px;
+    font-style: inherit;
+    outline: none;
+}
+
+.but1:hover{
+    cursor: pointer;
+}
+
+.descr{
+    padding-left: 10px;
+    margin-left: 10px;
+    font-size: 16px;
+    color: #d0bc89;
+    background-color: rgba(0, 0, 0, 0.5);
+    line-height: 30px;
+    height: 320px;
+    width: 280px;
+    overflow-y: scroll;
+    word-wrap: break-word;
+}
+.name{
+    color: #bd6f4e;
+    font-size: large;
+}
+
+#reviews{
+    margin-top: 16px;
+}
+
+#footer {
+    opacity: 0.6;
+    background: #44281c;
+    float: left;
+    width: 1100px;
+    height: 50px;
+}
