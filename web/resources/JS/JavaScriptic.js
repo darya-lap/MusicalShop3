@@ -89,35 +89,26 @@ function goToBucket(){
     return false;
 }
 
-function changeTheAmountOfInstruments(id) {
-
-    var val = parseInt(document.getElementById("amount"+id).value.toString());
-    sessionStorage.setItem("amount"+id,val);
-
-    var temp=sessionStorage.getItem("amount"+id).toString();
-    temp=temp;
-}
-
 function addToBucket(id) {
 
     var bucket = sessionStorage.getItem("bucket");
-    if ((sessionStorage.getItem("amount" + id) != null) && (sessionStorage.getItem("amount"+id) != 0)){
+    if ((document.getElementById("amount"+id).value != null) && (document.getElementById("amount"+id).value != "0")){
         if (bucket == null) {
-            sessionStorage.setItem("bucket", id.toString() + "," + sessionStorage.getItem("amount" + id).toString() + ";");
+            var temp = document.getElementById("amount"+id).value;
+            temp=temp;
+            sessionStorage.setItem("bucket", id + "," + document.getElementById("amount"+id).value + ";");
         }
         else {
-            sessionStorage.setItem("bucket", bucket + id.toString() + "," + sessionStorage.getItem("amount" + id).toString() + ";");
+            sessionStorage.setItem("bucket", bucket + id + "," + document.getElementById("amount"+id).value + ";");
         }
 
         var amount = sessionStorage.getItem("amount");
         var newAmount;
         if (amount == null) {
-            newAmount = parseInt(sessionStorage.getItem("amount" + id).toString());
-            sessionStorage.setItem("isEmptyBucket", "notempty");
+            newAmount = parseInt(document.getElementById("amount"+id).value);
         }
         else
-            newAmount = parseInt(sessionStorage.getItem("amount"))+ parseInt(sessionStorage.getItem("amount" + id).toString());
-        amount = amount;
+            newAmount = parseInt(sessionStorage.getItem("amount"))+ parseInt(document.getElementById("amount"+id).value);
         sessionStorage.setItem("amount",newAmount);
         document.getElementById("amount"+id).value="0";
         document.getElementById('miniAm').style.display='block';
@@ -128,6 +119,5 @@ function addToBucket(id) {
     temp=sessionStorage.getItem("amount");
     temp=temp;
 }
-
 
 

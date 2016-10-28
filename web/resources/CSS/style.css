@@ -69,16 +69,18 @@ button.login:hover{
 }
 
 .miniAmount{
-    width:25px;
+    width: 25px;
     height: 25px;
     position: relative;
-    top:-15px;
-    left:-15px;
-    background-color: red;
-    border-radius: 10px;
-    border-color: #dd904e;
+    top: -105px;
+    left: 850px;
+    background-color: #e60707;
+    border-radius: 15px;
+    border-color: #e8d09a;
     outline: none;
-    display: none;
+    text-align: center;
+    color: #f1cfa2;
+    font-size: 18
 }
 
 .historyOfBuying{

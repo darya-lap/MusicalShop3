@@ -140,7 +140,7 @@
     </div>
 </div>
 <!--<form action="InstrumentDetailsServlet" method="get">
-    <input type = image src = "resources/CSS/profilemini.jpg">
+    <input type = image src = "resources/CSS/">
 </form>-->
 </body>
 </html>

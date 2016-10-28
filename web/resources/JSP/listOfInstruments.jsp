@@ -16,6 +16,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8" %>
+<%@ taglib prefix="m" uri="/WEB-INF/tld/m.tld"%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -28,32 +29,6 @@
         <input type="button" class = "lang" id = 'butEn' onclick="setAttr('lang','en')" value=""/>
         <input type="button" class = "lang" id = 'butRu' onclick="setAttr('lang','ru')" value=""/>
         <input type="button" class = "lang" id = 'butFr' onclick="setAttr('lang','fr')" value=""/>
-
-           <%--// BucketContainer bucketContainer=new BucketContainer();--%>
-<%--//            if (request.getParameter("lang") != null) {--%>
-<%--//                Cookie cookieLang = new Cookie("lang", request.getParameter("lang"));--%>
-<%--//                response.addCookie(cookieLang);--%>
-<%--//                request.setAttribute("lang",cookieLang.getValue());--%>
-<%--//                cookieLang.setMaxAge(30);--%>
-<%--//            }--%>
-<%--//            else{--%>
-<%--//                Cookie [] cookies1 = request.getCookies();--%>
-<%--//                if (cookies1 != null){--%>
-<%--//                    for (Cookie c: cookies1){--%>
-<%--//                        if (c.getName().equals("lang")){--%>
-<%--//                            Cookie cookieLang= new Cookie("lang",c.getValue());--%>
-<%--//                            response.addCookie(cookieLang);--%>
-<%--//                            request.setAttribute("lang",cookieLang.getValue());--%>
-<%--//                            cookieLang.setMaxAge(30);--%>
-<%--//                            break;--%>
-<%--//                        }--%>
-<%--//                    }--%>
-<%--//                }--%>
-<%--//                else{--%>
-<%--//                    response.addCookie(new Cookie("lang","ru"));--%>
-<%--//                    request.setAttribute("lang","ru");--%>
-<%--//                }--%>
-<%--//            }--%>
 
         <%  Cookie cookieLang;
             String l;
@@ -118,13 +93,13 @@
                 </h2>
             </div>
 
-            <button class = "butbucket">
-                    <p class ="miniAmount" id="miniAm"><%if (session.getAttribute("amount") != null)%><%=session.getAttribute("amount")%><%;%></p>
-            </button>
+            <input type="button" class = "butbucket"/>
+
 
            <button class = "login">
            </button>
-            <input type="button" class = "historyOfBuying" value = "<%=resourceBundle.getString("history")%>"/>
+            <%--<input type="button" class = "historyOfBuying" value = "<%=resourceBundle.getString("history")%>"/>--%>
+            <p class ="miniAmount" id="miniAm"></p>
 
         </div>
 
@@ -239,10 +214,6 @@
                         <jsp:setProperty name="instrumentBean" property="name" value="<%=resourceBundle.getString(name)%>"/>
                         <jsp:setProperty name="instrumentBean" property="description" value="<%=resourceBundle.getString(description)%>"/>
 
-                        <%--/*session.setAttribute("i", cur.getId());--%>
-                        <%--session.setAttribute("ty", cur.getType());--%>
-                        <%--session.setAttribute("su", cur.getSubtype());--%>
-                        <%--session.setAttribute("pr", cur.getPrice());*/--%>
                         <%if (f.equals("all")){%>
                             <%@include file="miniInstrumentsPage.jsp"%>
                         <%}
