@@ -49,15 +49,15 @@ body {
     border: none;
     outline: none;
     position: relative;
-    right: -50px;
-    top: 10px;
+    left:830px;
+    top: -90px;
 }
 
 .amountOfInstrumentsInBucket{
     width: 40px;
     position: relative;
-    left: 600px;
-    top:-280px;
+    left: 668px;
+    top:-310px;
 }
 
 button.butbucket:hover{
@@ -72,15 +72,15 @@ button.login:hover{
     width: 25px;
     height: 25px;
     position: relative;
-    top: -105px;
-    left: 850px;
+    top: -240px;
+    left: 830px;
     background-color: #e60707;
     border-radius: 15px;
     border-color: #e8d09a;
     outline: none;
     text-align: center;
     color: #f1cfa2;
-    font-size: 18
+    font-size: 14px;
 }
 
 .historyOfBuying{
@@ -107,8 +107,8 @@ button.login:hover{
     border: none;
     outline: none;
     position: relative;
-    right: -70px;
-    top: 10px;
+    left: 920px;
+    top: -165px;
 }
 
 .lang{
@@ -279,8 +279,8 @@ a{
     border:none;
     outline: darkred;
     position: relative;
-    left: 660px;
-    top: -130px;
+    left: 615px;
+    top: -220px;
 }
 
 .buyInMiniPage:hover::after {
@@ -291,13 +291,18 @@ a{
     cursor: pointer;
 }
 
+.amountOfInstrumentsInBucket:hover::after {
+    content: attr(data-title);
+}
+
 .priceInMiniPage{
     position: relative;
     font-size: 35px;
-    left: 650px;
-    top: -300px;
+    left: 640px;
+    top: -230px;
     color: coral;
 }
+
 #image{
     margin-left: 30px;
     margin-top: 10px;

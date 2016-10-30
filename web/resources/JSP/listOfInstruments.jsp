@@ -17,6 +17,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8" %>
 <%@ taglib prefix="m" uri="/WEB-INF/tld/m.tld"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -24,13 +25,15 @@
     <link rel="stylesheet" type="text/css" href="/resources/CSS/style.css"/>
     <script type="text/javascript" src="/resources/JS/JavaScriptic.js"></script>
     <jsp:useBean id="instrumentBean" class="ConnectToDB.InstrumentBean" scope="page"/>
+    <jsp:useBean id="BucketContainer" class="MyContainer.BucketContainer" scope="session"/>
 
     <div class = "languages">
         <input type="button" class = "lang" id = 'butEn' onclick="setAttr('lang','en')" value=""/>
         <input type="button" class = "lang" id = 'butRu' onclick="setAttr('lang','ru')" value=""/>
         <input type="button" class = "lang" id = 'butFr' onclick="setAttr('lang','fr')" value=""/>
 
-        <%  Cookie cookieLang;
+        <%
+            Cookie cookieLang;
             String l;
             if (request.getParameter("lang") != null){
                 cookieLang = new Cookie("lang", request.getParameter("lang"));
@@ -85,7 +88,7 @@
     <div id="container">
         <div id="header">
             <div id = "allshopname">
-                <h1> Musse </h1>
+                <h1>Musse</h1>
                 <h2> <%
                     out.println(resourceBundle.getString("shopName"));
                     %>
@@ -93,13 +96,40 @@
                 </h2>
             </div>
 
-            <input type="button" class = "butbucket"/>
+            <form action="BucketServlet" method="get">
+                <input type="button" class = "butbucket" id="bucket" />
+            </form>
 
 
            <button class = "login">
            </button>
             <%--<input type="button" class = "historyOfBuying" value = "<%=resourceBundle.getString("history")%>"/>--%>
-            <p class ="miniAmount" id="miniAm"></p>
+            <button class ="miniAmount" id="miniAm" style="display:
+                <%
+                Cookie [] cookies = request.getCookies();
+                if (cookies != null){
+                    String disp = "none";
+                    for (Cookie c: cookies){
+                        if (c.getName().equals("displaying")){
+                            disp = c.getValue();
+                            break;
+                        }
+                    }
+                    out.print(disp);
+                }
+            %>
+                    "><%
+                if (cookies != null){
+                    String amount = "0";
+                    for (Cookie c: cookies){
+                        if (c.getName().equals("amount")){
+                            amount = c.getValue();
+                            break;
+                        }
+                    }
+                    out.print(amount);
+                }
+            %> </button>
 
         </div>
 

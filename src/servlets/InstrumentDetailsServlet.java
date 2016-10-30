@@ -69,23 +69,47 @@ public class InstrumentDetailsServlet extends HttpServlet {
                 "<body>\n" +
                 "\n" +
                 "<div id=\"container\">\n" +
-                "\n" +
-                "    <div id=\"header\">\n" +
-                "        <div id = \"allshopname\">\n" +
-                "            <h1> Musse </h1>\n" +
-                "            <h2>");
+                        "        <div id=\"header\">\n" +
+                        "            <div id = \"allshopname\">\n" +
+                        "                <h1>Musse</h1>\n" +
+                        "                <h2>");
         sb.append(bundle.getString("shopName"));
-        sb.append("</h2>\n" +
-                "        </div>\n" +
-                "<button class = \"butbucket\">"+
-            "</button>"+
-
-           "<button class = \"login\">"+
-           "</button>"+
-                "<input type=\"button\" class = \"historyOfBuying\" value = \"");
+        sb.append("</h2></div>\n" +
+                        "\n" +
+                        "            <form action=\"BucketServlet\" method=\"get\">\n" +
+                        "                <input type=\"button\" class = \"butbucket\" id=\"bucket\" />\n" +
+                        "            </form>\n" +
+                        "           <button class = \"login\">\n" +
+                        "           </button>"+
+                "<button class =\"miniAmount\" id=\"miniAm\" style=\"display:\n");
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null){
+            String disp = "none";
+            for (Cookie c: cookies){
+                if (c.getName().equals("displaying")){
+                    disp = c.getValue();
+                    break;
+                }
+            }
+            sb.append(disp);
+        }
+        sb.append("\">");
+        if (cookies != null){
+            String amount = "0";
+            for (Cookie c: cookies){
+                if (c.getName().equals("amount")){
+                    amount = c.getValue();
+                    break;
+                }
+            }
+            sb.append(amount);
+        }
+        sb.append("</button>\n</div>");
+                /*"<input type=\"button\" class = \"historyOfBuying\" value = \"");
         sb.append(bundle.getString("history"));
         sb.append("\"/>"+
-                "    </div><div id=\"menu\">\n" +
+                "    </div>*/
+        sb.append("<div id=\"menu\">\n" +
                 "\n" +
                 "        <div id = \"catalogue\" >\n" +
                 "            <input type=\"button\" class=\"catal\" onclick=setAttr1('filter','all') value=\"");

@@ -10,6 +10,7 @@
 <%@ taglib prefix="m" uri="/WEB-INF/tld/m.tld"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<jsp:useBean id="container" class="MyContainer.BucketContainer" scope="session" />
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
@@ -133,6 +134,10 @@
 
     <div class = "content"  id = "content1">
 
+        <c:forEach items="${container.ids}" var="id">
+        <span>${id}</span><br>
+        </c:forEach>
+k
     </div>
 
     <div id="footer" >

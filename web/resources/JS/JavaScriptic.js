@@ -79,45 +79,76 @@ function setAttr1(prmName,val){
     return false;
 }
 
+function setAttr2(prmName,val){
+    var res = '';
+    var d = location.href.split("#")[0].split("?");
+    var base = d[0];
+    var query = d[1];
+    if(query) {
+        var params = query.split("&");
+        for(var i = 0; i < params.length; i++) {
+            var keyval = params[i].split("=");
+            if(keyval[0] != prmName) {
+                res += params[i] + '&';
+            }
+        }
+    }
+    res += prmName + '=' + val;
+    return false;
+}
+
 function goToDescription(id) {
     window.location.href = 'http://localhost:8080/InstrumentDetailsServlet?id='+id.toString();
     return false;
 }
 
-function goToBucket(){
-    window.location.href = 'http://localhost:8080/resources/JSP/bucket.jsp';
-    return false;
+function addToBucket(id) {
+    if ((document.getElementById("amount"+id).value != null) && (document.getElementById("amount"+id).value != "0")) {
+        var s = getCookies();
+        document.getElementById('miniAm').style.display = 'block';
+        setCookie("displaying", "block");
+        var amount = getCookie("amount");
+        var a = parseInt(document.getElementById("amount"+id).value);
+        if (amount != null){
+            a = a + parseInt(amount);
+        }
+        document.getElementById("miniAm").innerText = a.toString();
+        setCookie("amount",a.toString());
+        var am = getCookie("amount"+id);
+        a = parseInt(document.getElementById("amount"+id).value);
+        if (am != null){
+            a = a + parseInt(am);
+        }
+        document.getElementById("amount"+id).value = "0";
+        setCookie("amount"+id,a.toString());
+        s = getCookies();
+    }
 }
 
-function addToBucket(id) {
+function getCookie (name) {
+    var cookies = getCookies();
+    return cookies[name] || null;
+}
 
-    var bucket = sessionStorage.getItem("bucket");
-    if ((document.getElementById("amount"+id).value != null) && (document.getElementById("amount"+id).value != "0")){
-        if (bucket == null) {
-            var temp = document.getElementById("amount"+id).value;
-            temp=temp;
-            sessionStorage.setItem("bucket", id + "," + document.getElementById("amount"+id).value + ";");
-        }
-        else {
-            sessionStorage.setItem("bucket", bucket + id + "," + document.getElementById("amount"+id).value + ";");
-        }
+function setCookie(name, value) {
+    document.cookie = name + "=" + value;
+}
 
-        var amount = sessionStorage.getItem("amount");
-        var newAmount;
-        if (amount == null) {
-            newAmount = parseInt(document.getElementById("amount"+id).value);
-        }
-        else
-            newAmount = parseInt(sessionStorage.getItem("amount"))+ parseInt(document.getElementById("amount"+id).value);
-        sessionStorage.setItem("amount",newAmount);
-        document.getElementById("amount"+id).value="0";
-        document.getElementById('miniAm').style.display='block';
-        document.getElementById('miniAm').innerText=newAmount;
+function getCookies() {
+    var cookies = {}; // Возвращаемый объект
+    var all = document.cookie; // Получить все cookies в одной строке
+    if (all === "") // Если получена пустая строка,
+        return cookies; // вернуть пустой объект
+    var list = all.split("; "); // Разбить на пары имя/значение
+    for(var i = 0; i < list.length; i++) { // Для каждого cookie
+        var cookie = list[i];
+        var p = cookie.indexOf("="); // Отыскать первый знак =
+        var name = cookie.substring(0,p); // Получить имя cookie
+        var value = cookie.substring(p+1); // Получить значение cookie
+        value = decodeURIComponent(value); // Декодировать значение
+        cookies[name] = value; // Сохранить имя и значение в объекте
     }
-
-    var temp=sessionStorage.getItem("bucket").toString();
-    temp=sessionStorage.getItem("amount");
-    temp=temp;
+    return cookies;
 }
 
 

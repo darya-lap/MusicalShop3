@@ -8,4 +8,33 @@
         <function-class>JSTL.Utils</function-class>
         <function-signature>java.lang.String getCurrentDate()</function-signature>
     </function>
+    <function>
+        <name>addItem</name>
+        <function-class>MyContainer.BucketContainer</function-class>
+        <function-signature>void addItem(java.lang.Integer,java.lang.Integer))</function-signature>
+    </function>
+
+    <function>
+        <name>setAmount</name>
+        <function-class>MyContainer.BucketContainer</function-class>
+        <function-signature>void addToAmount(java.lang.Integer)</function-signature>
+    </function>
+
+    <function>
+        <name>getAmount</name>
+        <function-class>MyContainer.BucketContainer</function-class>
+        <function-signature>java.lang.Integer getAmount()</function-signature>
+    </function>
+
+    <function>
+        <name>setDisplaying</name>
+        <function-class>MyContainer.BucketContainer</function-class>
+        <function-signature>void setDisplaying(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>getDisplaying</name>
+        <function-class>MyContainer.BucketContainer</function-class>
+        <function-signature>java.lang.String getDisplaying()</function-signature>
+    </function>
 </taglib>
