@@ -7,7 +7,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.util.ResourceBundle" %>
-<%@ page import="MyContainer.BucketContainer" %>
 <%--
   Created by IntelliJ IDEA.
   User: Дарья
@@ -16,16 +15,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8" %>
-<%@ taglib prefix="m" uri="/WEB-INF/tld/m.tld"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Musse</title>
     <link rel="stylesheet" type="text/css" href="/resources/CSS/style.css"/>
     <script type="text/javascript" src="/resources/JS/JavaScriptic.js"></script>
-    <jsp:useBean id="instrumentBean" class="ConnectToDB.InstrumentBean" scope="page"/>
-    <jsp:useBean id="BucketContainer" class="MyContainer.BucketContainer" scope="session"/>
+    <jsp:useBean id="instrumentBean" class="ConnectToDB.InstrumentBean" scope="session"/>
 
     <div class = "languages">
         <input type="button" class = "lang" id = 'butEn' onclick="setAttr('lang','en')" value=""/>
@@ -50,8 +48,8 @@
                         }
                     }
                 }
+                session.setAttribute("lang",l);
                 cookieLang = new Cookie("lang", l);
-                cookieLang.setMaxAge(1);
             }
 
             Locale locale;
@@ -76,6 +74,7 @@
                         }
                     }
                 }
+                session.setAttribute("filter",f);
                 cookieFilter = new Cookie("filter", f);
             }
             response.addCookie(cookieFilter);
@@ -95,41 +94,11 @@
 
                 </h2>
             </div>
+        <button class = "butbucket" id="bucket" onclick="goToBucket('<%=l%>')" value="" title="<%out.println(resourceBundle.getString("goToBucket"));%>"></button>
 
-            <form action="BucketServlet" method="get">
-                <input type="button" class = "butbucket" id="bucket" />
-            </form>
-
-
-           <button class = "login">
-           </button>
+           <button class = "login" onclick="goToAuth('<%=l%>')" title="<%out.println(resourceBundle.getString("logInSystem"));%>"></button>
             <%--<input type="button" class = "historyOfBuying" value = "<%=resourceBundle.getString("history")%>"/>--%>
-            <button class ="miniAmount" id="miniAm" style="display:
-                <%
-                Cookie [] cookies = request.getCookies();
-                if (cookies != null){
-                    String disp = "none";
-                    for (Cookie c: cookies){
-                        if (c.getName().equals("displaying")){
-                            disp = c.getValue();
-                            break;
-                        }
-                    }
-                    out.print(disp);
-                }
-            %>
-                    "><%
-                if (cookies != null){
-                    String amount = "0";
-                    for (Cookie c: cookies){
-                        if (c.getName().equals("amount")){
-                            amount = c.getValue();
-                            break;
-                        }
-                    }
-                    out.print(amount);
-                }
-            %> </button>
+
 
         </div>
 
@@ -246,6 +215,7 @@
 
                         <%if (f.equals("all")){%>
                             <%@include file="miniInstrumentsPage.jsp"%>
+
                         <%}
                         else{
                             if ((cur.getType().equals(f)) || (cur.getSubtype().equals(f))){%>

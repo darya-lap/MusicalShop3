@@ -48,9 +48,10 @@ body {
     background: url("bucket1.png");
     border: none;
     outline: none;
-    position: relative;
-    left:830px;
-    top: -90px;
+}
+
+.butbucket:hover{
+    cursor:pointer;
 }
 
 .amountOfInstrumentsInBucket{
@@ -106,9 +107,8 @@ button.login:hover{
     background-size: 100%;
     border: none;
     outline: none;
-    position: relative;
-    left: 920px;
-    top: -165px;
+    position:relative;
+    left: 20px;
 }
 
 .lang{
@@ -283,9 +283,26 @@ a{
     top: -220px;
 }
 
+.login:hover::after {
+    content: attr(data-title);
+}
+
 .buyInMiniPage:hover::after {
     content: attr(data-title);
 }
+
+.butbucket:hover::after {
+    content: attr(data-title);
+}
+
+.forwardToBucket:hover::after {
+    content: attr(data-title);
+}
+
+.buy-button:hover::after {
+    content: attr(data-title);
+}
+
 
 .buyInMiniPage:hover{
     cursor: pointer;

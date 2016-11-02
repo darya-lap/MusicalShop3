@@ -16,7 +16,7 @@
 <body>
     <div class = "model">
         <input type = image class = "imageInMiniPage" src="/resources/images/<jsp:getProperty name="instrumentBean" property="id"/>MainImage.jpg"
-        onclick=goToDescription(<jsp:getProperty name="instrumentBean" property="id"/>)>
+        onclick=goToDescription(<jsp:getProperty name="instrumentBean" property="id"/>,'<%=l%>')>
 
         <p class = "nameInMiniPage"><jsp:getProperty name="instrumentBean" property="name"/></p>
         <p class = "descriptionInMiniPage"><jsp:getProperty name="instrumentBean" property="description"/></p>
@@ -24,6 +24,7 @@
             <p class = "priceInMiniPage">
                 <jsp:getProperty name="instrumentBean" property="price"/>
             </p>
+        <form action="/BucketServlet" method="post">
             <input type="number"
                    id = "amount<jsp:getProperty name="instrumentBean" property="id"/>"
                    class="amountOfInstrumentsInBucket"
@@ -31,19 +32,22 @@
                    title="<%=resourceBundle.getString("goToBucket")%>"
                    value="0"
                    min = "0">
-            <input type="button"
-                   class = "buyInMiniPage"
-                   name="<jsp:getProperty name="instrumentBean" property="id"/>"
-                   title="<%=resourceBundle.getString("addToBucket")%>"
-                   onclick= "addToBucket(<jsp:getProperty
-                       name="instrumentBean"
-                       property="id"/>);"/>
 
-        <form action="BucketServlet" method="get">
-            <input type = "submit"
-                   class = "forwardToBucket"
-                   value="<%=resourceBundle.getString("buy")%>">
+                <button
+                    class = "buyInMiniPage"
+                    name="id1"
+                    value="<jsp:getProperty name="instrumentBean" property="id"/>&<jsp:getProperty name="instrumentBean" property="price"/>"
+                    title="<%=resourceBundle.getString("addToBucket")%>"></button>
+
         </form>
+
+
+            <a href="/resources/JSP/bucket.jsp"><button
+                    title="<%out.println(resourceBundle.getString("goToBucket"));%>"
+                       class = "forwardToBucket"><%=resourceBundle.getString("buy")%>
+            </button>
+            </a>
+
 
 
     </div>

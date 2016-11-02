@@ -1,0 +1,74 @@
+.imageInMiniPage1{
+    margin-left:15px;
+    margin-top:15px;
+}
+
+.nameInMiniPage1{
+    margin-left:225px;
+    margin-top:-180px;
+    font-size: 25px;
+    color: #ffe6a9;
+}
+
+.descriptionInMiniPage1{
+    color: #ffe6a9;
+    font-size: 18px;
+    width: 470px;
+    text-indent: 2%;
+    margin-left:20px;
+    margin-top:60px;
+}
+
+.model1{
+    height: 400px;
+    background-color: rgba(59, 0, 0, 0.5);
+    width: 60%;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 10px;
+    float: left;
+    position: relative;
+}
+
+.inYourBucket{
+    font-size:20px;
+    color:#d0bc89;
+    margin-left: 225px;
+    margin-top:80px;
+}
+
+.allInstruments{
+    text-align:center;
+    position:fixed;
+    left:900px;
+    top:190px;
+    width:300px;
+    heigth:500px;
+    background-color:rgba(211, 216, 211, 0.66)
+}
+
+.textOfAllInstruments{
+    color:#460606;
+    font-size:15px;
+    font-style:inherit;
+    font-style:italic;
+    margin-left:10px;
+}
+
+.cleanBucket{
+    background-color:bisque;
+    border-color:brown;
+    font-size:18px;
+}
+
+.cleanBucket:hover{
+    cursor:pointer;
+}
+
+.cleanBucket:hover{
+    cursor:pointer;
+}
+
+.allInstruments{
+    text-align:center;
+}

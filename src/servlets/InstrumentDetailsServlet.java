@@ -1,7 +1,5 @@
 package servlets;
 
-import MyContainer.BucketContainer;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -18,7 +16,7 @@ public class InstrumentDetailsServlet extends HttpServlet {
 
     protected void langRequest(HttpServletResponse response, HttpServletRequest request)
             throws ServletException,IOException{
-        BucketContainer bucketContainer = new BucketContainer();
+
         String l = request.getParameter("lang");
         Cookie cookieLang;
         Locale locale = null;
@@ -38,6 +36,7 @@ public class InstrumentDetailsServlet extends HttpServlet {
         else{
             locale = new Locale(l.toString());
         }
+        request.getSession().setAttribute("lang",l);
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
         StringBuilder sb = new StringBuilder("");
@@ -76,35 +75,17 @@ public class InstrumentDetailsServlet extends HttpServlet {
         sb.append(bundle.getString("shopName"));
         sb.append("</h2></div>\n" +
                         "\n" +
-                        "            <form action=\"BucketServlet\" method=\"get\">\n" +
-                        "                <input type=\"button\" class = \"butbucket\" id=\"bucket\" />\n" +
-                        "            </form>\n" +
-                        "           <button class = \"login\">\n" +
-                        "           </button>"+
-                "<button class =\"miniAmount\" id=\"miniAm\" style=\"display:\n");
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null){
-            String disp = "none";
-            for (Cookie c: cookies){
-                if (c.getName().equals("displaying")){
-                    disp = c.getValue();
-                    break;
-                }
-            }
-            sb.append(disp);
-        }
-        sb.append("\">");
-        if (cookies != null){
-            String amount = "0";
-            for (Cookie c: cookies){
-                if (c.getName().equals("amount")){
-                    amount = c.getValue();
-                    break;
-                }
-            }
-            sb.append(amount);
-        }
-        sb.append("</button>\n</div>");
+                        "            <input type=\"button\" class = \"butbucket\" id=\"bucket\" value=\"\" onclick=\"goToBucket('");
+                        sb.append(l);
+                        sb.append("')\" title=\"");
+        sb.append(bundle.getString("goToBucket"));
+        sb.append("\" />\n" +
+                        "           <button class = \"login\" onclick=\"goToAuth('");
+        sb.append(l);
+        sb.append("')\" title=\"");
+        sb.append(bundle.getString("logInSystem"));
+        sb.append("\"></button>"+
+                "</div>");
                 /*"<input type=\"button\" class = \"historyOfBuying\" value = \"");
         sb.append(bundle.getString("history"));
         sb.append("\"/>"+
@@ -194,9 +175,16 @@ public class InstrumentDetailsServlet extends HttpServlet {
                 "        <p class = \"price\">");
         sb.append(bundle.getString(id+"price"));
         sb.append("</p>\n" +
-                "        <button class = \"buy-button\">");
+                "        <form type=\"submit\" action=\"BucketServlet1\" method=\"post\" value=\"\" >"+
+                "<button name = \"id1\" class = \"buy-button\" value=\"");
+                sb.append(id);
+                sb.append("&");
+                sb.append(bundle.getString(id+"price"));
+        sb.append("\" title=\"");
+        sb.append(bundle.getString("goToBucket"));
+        sb.append("\" >");
         sb.append(bundle.getString("buy"));
-        sb.append("</button><div class = \"right\">");
+        sb.append("</button></form><div class = \"right\">");
         sb.append("<script type=\"text/javascript\" src = \"resources/CSS/JavaScriptic.js\"></script>\n");
         sb.append("<input type='button' id='sh1' class = 'but1' onclick='show1()' value='");
         sb.append(bundle.getString("description"));

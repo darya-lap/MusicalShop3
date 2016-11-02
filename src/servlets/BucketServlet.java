@@ -9,28 +9,39 @@ import java.io.IOException;
 
 @WebServlet(name = "BucketServlet", urlPatterns = "/BucketServlet")
 public class BucketServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        BucketContainer bc = BucketContainer.get(session);
+        BucketContainer bean = BucketContainer.get(session);
 
-        Cookie[] cookies = request.getCookies();
-
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().contains("amount")) {
-                String name = cookie.getName();
+        String value =  request.getParameter("amountToBucket");
+        String id1 = request.getParameter("id1");
+        String d = request.getParameter("del");
+        if (d != null){
+            bean.getIds().clear();
+            bean.getId_amount().clear();
+            bean.getId_price().clear();
+            bean.clearFullCost();
+        }
+        else {
+            if (!value.equals("0")) {
                 int i = 0;
-                if ((name.charAt(i) > '0') && (name.charAt(i) < '9')) {
-                    while (name.charAt(i) != 'a') {
-                        i++;
-                    }
-                    bc.addItem(Integer.parseInt(name.substring(0, i - 1)), Integer.parseInt(cookie.getValue()));
+                while (id1.charAt(i) != '&') {
+                    i++;
+                }
+                String id = id1.substring(0, i);
+                String price = id1.substring(i + 1);
+                if (value != null) {
+                    bean.addItem(Integer.parseInt(id), Integer.parseInt(value));
+                    bean.addId(Integer.parseInt(id));
+                    bean.addItemPr(Integer.parseInt(id), Integer.parseInt(price));
                 }
             }
         }
-        response.sendRedirect("/resources/JSP/bucket.jsp");
+
+        response.sendRedirect("/resources/JSP/listOfInstruments.jsp");
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.sendError(HttpServletResponse.SC_BAD_REQUEST, "GET requests are not supported");
     }
 }

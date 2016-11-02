@@ -1,0 +1,50 @@
+.contentAuth {
+    background: rgba(145, 130, 94, 0.5);
+    width: 1100px;
+    height: 650px;
+}
+
+.auth{
+    background:#270303;
+    width:400px;
+    height:220px;
+    margin:auto;
+    margin-top:100px;
+    text-align:center;
+}
+
+.auth1{
+    background:#270303;
+    width:400px;
+    height:280px;
+    margin:auto;
+    margin-top:100px;
+    text-align:center;
+}
+
+.loginAndPasswordLabel{
+    position:relative;
+    top:20px;
+    color:#ffe6a9;
+    font-size:25px;
+}
+
+.loginAndPasswordInput{
+    width:250px;
+    height:30px;
+    margin-top:20px;
+    border-color:#e44e4e;
+}
+
+.submitButton{
+    background:#d0bc89;
+    border-color:#d0bc89;
+    font-size:18px;
+    margin-top:20px;
+    width:120px;
+    border-radius:15px;
+}
+
+.submitButton:hover{
+    cursor: pointer;
+}
