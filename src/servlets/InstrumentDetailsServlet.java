@@ -1,5 +1,7 @@
 package servlets;
 
+import MyContainer.BucketContainer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -80,12 +82,35 @@ public class InstrumentDetailsServlet extends HttpServlet {
                         sb.append("')\" title=\"");
         sb.append(bundle.getString("goToBucket"));
         sb.append("\" />\n" +
-                        "           <button class = \"login\" onclick=\"goToAuth('");
-        sb.append(l);
-        sb.append("')\" title=\"");
-        sb.append(bundle.getString("logInSystem"));
-        sb.append("\"></button>"+
-                "</div>");
+                        "           <button class = \"login\" onclick=\"goToAuth('<%=l%>')\" title=\"");
+
+        if (request.getSession().getAttribute("user") == null){
+         sb.append(bundle.getString("logInSystem"));
+            sb.append("\"></button>");
+        }
+        else {
+            sb.append(bundle.getString("logOutSystem"));
+            sb.append("\"></button>" +
+                    "<p class=\"userInfo\">");
+            sb.append(bundle.getString("youEnterAs"));
+            sb.append("</p>" +
+                    "<a class=\"userInfo1\" href=\"myAccount.jsp?lang=");
+                    sb.append(l);
+                    sb.append("\" title=\"");
+            sb.append(bundle.getString("goToAccount"));
+            sb.append("\">");
+            sb.append(request.getSession().getAttribute("user"));
+            sb.append("</a>");
+            BucketContainer bc = (BucketContainer) request.getSession().getAttribute("container");
+            if (!bc.isEmpty()){
+                sb.append("<button class=\"goToOrder\" onclick=\"goToOrder('");
+                sb.append(l);
+                sb.append("')\">");
+                sb.append(bundle.getString("checkOut"));
+                sb.append("</button>");
+            }
+        }
+         sb.append("</div>");
                 /*"<input type=\"button\" class = \"historyOfBuying\" value = \"");
         sb.append(bundle.getString("history"));
         sb.append("\"/>"+

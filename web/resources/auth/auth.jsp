@@ -56,9 +56,9 @@
     <div class = "contentAuth"  id = "content1">
         <form action="j_security_check?lang=${pageContext.request.parameterMap.lang[0]}" method="post" name="loginForm" class="auth">
             <label class="loginAndPasswordLabel"><fmt:message key="login"/></label><br>
-            <input class="loginAndPasswordInput" type="text" name="j_username" placeholder="имя" size="20"/><br>
+            <input class="loginAndPasswordInput" type="text" name="j_username" placeholder="<fmt:message key="login"/>" size="20"/><br>
             <label class="loginAndPasswordLabel"><fmt:message key="txtPassword"/></label><br>
-            <input class="loginAndPasswordInput" type="password" name="j_password" size="20"/><br>
+            <input class="loginAndPasswordInput" type="password" name="j_password" placeholder="<fmt:message key="txtPassword"/>" size="20"/><br>
             <input class="submitButton" type="submit" value="<fmt:message key="enter"/>"/>
         </form>
     </div>

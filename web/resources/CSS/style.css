@@ -48,6 +48,8 @@ body {
     background: url("bucket1.png");
     border: none;
     outline: none;
+    position:relative;
+    left:30px;
 }
 
 .butbucket:hover{
@@ -108,7 +110,7 @@ button.login:hover{
     border: none;
     outline: none;
     position:relative;
-    left: 20px;
+    left: 45px;
 }
 
 .lang{
@@ -287,6 +289,10 @@ a{
     content: attr(data-title);
 }
 
+.userInfo1:hover::after{
+    content: attr(data-title);
+}
+
 .buyInMiniPage:hover::after {
     content: attr(data-title);
 }
@@ -302,7 +308,6 @@ a{
 .buy-button:hover::after {
     content: attr(data-title);
 }
-
 
 .buyInMiniPage:hover{
     cursor: pointer;
@@ -419,4 +424,42 @@ div.right{
     float: left;
     width: 1100px;
     height: 50px;
+}
+
+.userInfo{
+    font-size:20px;
+    color:#ffe6a9;
+    text-align:right;
+    margin-right:0px;
+    position:relative;
+    top:-175px;
+    left:-300px;
+}
+
+.userInfo1{
+    font-size:20px;
+    color:#d0bc89;
+    text-align:right;
+    position:relative;
+    top:-218px;
+    left:810px;
+    text-decoration:underline;
+}
+
+.goToOrder{
+    width:100px;
+    height:50px;
+    background:#840a0a;
+    border-color:#390000;
+    border-radius:30px;
+    font-size:15px;
+    font-weight:bold;
+    color:#bfa973;
+    position:relative;
+    top:-160px;
+    left:920px;
+}
+
+.goToOrder:hover{
+    cursor: pointer;
 }

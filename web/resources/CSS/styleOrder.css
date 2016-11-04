@@ -1,0 +1,47 @@
+#map {
+    height: 300px;
+    width: 500px;
+    margin-left:20px;
+    margin-top:20px;
+}
+
+.allInstruments{
+    text-align:center;
+    position:relative;
+    top:-315px;
+    left:530px;
+    width:290px;
+    background-color:rgba(211, 216, 211, 0.66)
+}
+
+.textOfAllInstruments{
+    color:#460606;
+    font-size:15px;
+    font-style:italic;
+    margin-left:10px;
+}
+
+.courierOrShop{
+    width:200px;
+    height:60px;
+    margin-left:40px;
+    margin-top:20px;
+    border-color: #753434;
+    outline-color:#840a0a;
+    border-radius:40px;
+    font-size:20px;
+    color:#840a0a;
+    background-color:#ffe6a9;
+}
+
+.courierOrShop:hover{
+    cursor: pointer;
+}
+
+#shop{
+    border-color: #7b0000;
+}
+
+#courier{
+    border-color:#ffe6a9;
+}

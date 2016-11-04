@@ -7,10 +7,10 @@ import java.io.Serializable;
 @Table(name="instruments")
 @XmlRootElement
 @NamedQueries({
-      //  @NamedQuery(name = "InstrumentBean.findAll", query = "SELECT h FROM InstrumentBean"),
-        @NamedQuery(name = "InstrumentBean.findById", query = "SELECT h FROM InstrumentBean h WHERE h.id = :id"),
-        @NamedQuery(name = "InstrumentBean.findByType", query = "SELECT h FROM InstrumentBean h WHERE h.type = :type"),
-        @NamedQuery(name = "InstrumentBean.findBySubtype", query = "SELECT h FROM InstrumentBean h WHERE h.subtype = :subtype")})
+        @NamedQuery(name = "InstrumentBean.findAll", query = "SELECT count(*) FROM InstrumentBean h"),
+        @NamedQuery(name = "InstrumentBean.findById", query = "select count(*) FROM InstrumentBean h WHERE h.id = :id"),
+        @NamedQuery(name = "InstrumentBean.findByType", query = "select count(*) FROM InstrumentBean h WHERE h.type = :type"),
+        @NamedQuery(name = "InstrumentBean.findBySubtype", query = "select count(*) FROM InstrumentBean h WHERE h.subtype = :subtype")})
 public class InstrumentBean implements Serializable {
 
     @Id

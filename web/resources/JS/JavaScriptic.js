@@ -77,69 +77,13 @@ function goToBucket(l) {
 }
 
 function goToAuth(l) {
-    window.location.href = 'http://localhost:8080/resources/JSP/myAccount.jsp?lang='+l;
+    window.location.href = 'http://localhost:8080/LoginServlet?lang='+l;
 }
 
-/*function addToBucket(id) {
-    if ((document.getElementById("amount"+id).value != null) && (document.getElementById("amount"+id).value != "0")) {
-        var s = getCookies();
-        document.getElementById('miniAm').style.display = 'block';
-        setCookie("displaying", "block",{expires:120});
-        var amount = getCookie("amount");
-        var a = parseInt(document.getElementById("amount"+id).value);
-        if (amount != null){
-            a = a + parseInt(amount);
-        }
-        document.getElementById("miniAm").innerText = a.toString();
-        setCookie("amount",a.toString(),{expires:120});
-        var am = getCookie("amount"+id);
-        a = parseInt(document.getElementById("amount"+id).value);
-        if (am != null){
-            a = a + parseInt(am);
-        }
-        document.getElementById("amount"+id).value = "0";
-        setCookie("amount"+id,a.toString(),{expires:120});
-        s = getCookies();
-    }
+function goToOrder(l) {
+    window.location.href = 'http://localhost:8080/OrderServlet?lang='+l;
 }
 
-function deleteFromBucket(id) {
-        var s = getCookies();
-        setCookie("displaying", "block");
-        var amount = getCookie("amount");
-        var a = getCookie("amount"+id);
-        if (amount != null){
-            amount = parseInt(amount) - a;
-        }
-        document.getElementById("miniAm").innerText = amount.toString();
-        setCookie("amount",amount.toString());
-        setCookie("amount"+id,"",{expires:-1})
-        document.getElementById("amount"+id).value = "0";
-        setCookie("amount"+id,a.toString());
-        s = getCookies();
-}
-
-function addToBucket1(id) {
-        var s = getCookies();
-        document.getElementById('miniAm').style.display = 'block';
-        setCookie("displaying", "block",{expires:120});
-        var amount = getCookie("amount");
-        var a = 1;
-        if (amount != null){
-            a = a + parseInt(amount);
-        }
-        document.getElementById("miniAm").innerText = a.toString();
-        setCookie("amount",a.toString(),{expires:120});
-        var am = getCookie("amount"+id);
-        a = 1;
-        if (am != null){
-            a = a + parseInt(am);
-        }
-        setCookie("amount"+id,a.toString(),{expires:120});
-        s = getCookies();
-
-}
-*/
 function getCookie (name) {
     var cookies = getCookies();
     return cookies[name] || null;
@@ -148,8 +92,6 @@ function getCookie (name) {
 /*function setCookie(name, value) {
     document.cookie = name + "=" + value;
 }*/
-
-
 
 function setCookie(name, value, options) {
     options = options || {};
@@ -195,6 +137,31 @@ function getCookies() {
         cookies[name] = value; // Сохранить имя и значение в объекте
     }
     return cookies;
+}
+
+function initMap(lt, lg) {
+    return new google.maps.Map(document.getElementById('map'), {
+        zoom: 4,
+        center: {lat:lt, lng: lg}
+    });
+}
+
+function addMarkers(lt,lg,name,size) {
+    initMap(59.957049,30.282465);
+
+    for(var i=0; i<size; i++) {
+        var myLatLng = {lat: lt[i], lng: lg[i]};
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: name[i]
+        });
+    }
+}
+
+function changeDelivery(x,y){
+    document.getElementById(x).style.borderColor='#7b0000';
+    document.getElementById(y).style.borderColor='#ffe6a9';
 }
 
 

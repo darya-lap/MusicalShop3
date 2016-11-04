@@ -43,14 +43,12 @@
     left:900px;
     top:190px;
     width:300px;
-    heigth:500px;
     background-color:rgba(211, 216, 211, 0.66)
 }
 
 .textOfAllInstruments{
     color:#460606;
     font-size:15px;
-    font-style:inherit;
     font-style:italic;
     margin-left:10px;
 }
@@ -72,3 +70,4 @@
 .allInstruments{
     text-align:center;
 }
+

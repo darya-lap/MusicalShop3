@@ -7,13 +7,4 @@
         <property name="subtype" column="subtype" type="string"/>
         <property name="price" column="price" type="int"/>
     </class>
-
-    <class name="ConnectToDB.UserConnect" table="users">
-        <id name="login" type="string" column="user_login">
-            <!--<generator class="increment"/>-->
-        </id>
-        <property name="first_name" column="first_name" type="string"/>
-        <property name="email" column="email" type="string"/>
-    </class>
-
 </hibernate-mapping>

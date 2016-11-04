@@ -54,8 +54,8 @@
     </div>
 
     <div class = "contentAuth"  id = "content1">
-        <form action="j_security_check" method="post" name="loginForm" class="auth1">
-            <label class="loginAndPasswordLabel"><fmt:message key="tryAgain"/></label>
+        <form action="j_security_check?lang=${pageContext.request.parameterMap.lang[0]}" method="post" name="loginForm" class="auth1">
+            <label class="loginAndPasswordLabel1"><fmt:message key="tryAgain"/></label><br>
             <label class="loginAndPasswordLabel"><fmt:message key="login"/></label><br>
             <input class="loginAndPasswordInput" type="text" name="j_username" placeholder="имя" size="20"/><br>
             <label class="loginAndPasswordLabel"><fmt:message key="txtPassword"/></label><br>

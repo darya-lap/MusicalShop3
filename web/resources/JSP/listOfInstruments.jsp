@@ -24,6 +24,7 @@
     <link rel="stylesheet" type="text/css" href="/resources/CSS/style.css"/>
     <script type="text/javascript" src="/resources/JS/JavaScriptic.js"></script>
     <jsp:useBean id="instrumentBean" class="ConnectToDB.InstrumentBean" scope="session"/>
+    <jsp:useBean id="container" class="MyContainer.BucketContainer" scope="session"/>
 
     <div class = "languages">
         <input type="button" class = "lang" id = 'butEn' onclick="setAttr('lang','en')" value=""/>
@@ -96,9 +97,20 @@
             </div>
         <button class = "butbucket" id="bucket" onclick="goToBucket('<%=l%>')" value="" title="<%out.println(resourceBundle.getString("goToBucket"));%>"></button>
 
-           <button class = "login" onclick="goToAuth('<%=l%>')" title="<%out.println(resourceBundle.getString("logInSystem"));%>"></button>
-            <%--<input type="button" class = "historyOfBuying" value = "<%=resourceBundle.getString("history")%>"/>--%>
+            <button class = "login" onclick="goToAuth('<%=l%>')" title="
 
+        <%if (session.getAttribute("user") == null){
+            out.print(resourceBundle.getString("logInSystem")+"\"></button>");
+         }
+        else{
+        out.print(resourceBundle.getString("logOutSystem"));%>
+        "></button>
+            <p class="userInfo"><%out.print(resourceBundle.getString("youEnterAs"));%></p>
+            <a class="userInfo1" href="myAccount.jsp?lang=<%=l%>" title="<%out.print(resourceBundle.getString("goToAccount"));%>"><%=session.getAttribute("user")%></a>
+            <%if (!container.isEmpty()){%>
+            <button class="goToOrder" onclick="goToOrder('${pageContext.request.parameterMap.lang[0]}')"><%out.print(resourceBundle.getString("checkOut"));%></button>
+            <%}
+            }%>
 
         </div>
 
@@ -205,33 +217,34 @@
                         InstrumentBean cur = (InstrumentBean) iterator.next();
                         String name = cur.getId() + "name";
                         String description = cur.getId() + "description";
-                        %>
-                        <jsp:setProperty name="instrumentBean" property="id" value="<%=cur.getId()%>"/>
-                        <jsp:setProperty name="instrumentBean" property="type" value="<%=cur.getType()%>"/>
-                        <jsp:setProperty name="instrumentBean" property="subtype" value="<%=cur.getSubtype()%>"/>
-                        <jsp:setProperty name="instrumentBean" property="price" value="<%=cur.getPrice()%>"/>
-                        <jsp:setProperty name="instrumentBean" property="name" value="<%=resourceBundle.getString(name)%>"/>
-                        <jsp:setProperty name="instrumentBean" property="description" value="<%=resourceBundle.getString(description)%>"/>
-
-                        <%if (f.equals("all")){%>
-                            <%@include file="miniInstrumentsPage.jsp"%>
-
-                        <%}
-                        else{
-                            if ((cur.getType().equals(f)) || (cur.getSubtype().equals(f))){%>
-                                <%@include file="miniInstrumentsPage.jsp"%>
-                            <%}
-                        }
-                    }
-                    tx.commit();
-                } catch (HibernateException e) {
-                    if (tx != null)
-                        tx.rollback();
-                    e.printStackTrace();
-                } finally {
-                    session1.close();
-                }
             %>
+            <jsp:setProperty name="instrumentBean" property="id" value="<%=cur.getId()%>"/>
+            <jsp:setProperty name="instrumentBean" property="type" value="<%=cur.getType()%>"/>
+            <jsp:setProperty name="instrumentBean" property="subtype" value="<%=cur.getSubtype()%>"/>
+            <jsp:setProperty name="instrumentBean" property="price" value="<%=cur.getPrice()%>"/>
+            <jsp:setProperty name="instrumentBean" property="name" value="<%=resourceBundle.getString(name)%>"/>
+            <jsp:setProperty name="instrumentBean" property="description" value="<%=resourceBundle.getString(description)%>"/>
+
+            <%if (f.equals("all")){%>
+            <%@include file="miniInstrumentsPage.jsp"%>
+
+            <%}
+            else{
+                if ((cur.getType().equals(f)) || (cur.getSubtype().equals(f))){%>
+            <%@include file="miniInstrumentsPage.jsp"%>
+            <%}
+            }
+            }
+                tx.commit();
+            } catch (HibernateException e) {
+                if (tx != null)
+                    tx.rollback();
+                e.printStackTrace();
+            } finally {
+                session1.close();
+            }
+            %>
+
 
         </div>
 

@@ -1,0 +1,9 @@
+<!--<hibernate-mapping>-->
+    <!--<class name="ConnectToDB.ShopConnect" table="shops">-->
+        <!--<id name="number_of_shop" type="int" column="number_of_shop">-->
+        <!--</id>-->
+        <!--<property name="lat" column="lat" type="float"/>-->
+        <!--<property name="lng" column="lng" type="float"/>-->
+        <!--<property name="name_of_shop" column="name_of_shop" type="String"/>-->
+    <!--</class>-->
+<!--</hibernate-mapping>-->

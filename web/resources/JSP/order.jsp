@@ -1,50 +1,53 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8" %>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page isELIgnored="false"%>
 <%@ taglib prefix="m" uri="/WEB-INF/tld/m.tld"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page import="MyContainer.BucketContainer" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-        <title>Bucket</title>
-        <link rel="stylesheet" type="text/css" href="/resources/CSS/style.css"/>
-        <link rel="stylesheet" type="text/css" href="/resources/CSS/styleBucket.css"/>
-        <script type="text/javascript" src="/resources/JS/JavaScriptic.js"></script>
+    <title>Bucket</title>
+    <link rel="stylesheet" type="text/css" href="/resources/CSS/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/resources/CSS/styleOrder.css"/>
+    <script type="text/javascript" src="/resources/JS/JavaScriptic.js"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUybwygBuLPhL9rcuoLBurnOFtK87Y0qk&callback=initMap">
+    </script>
     <jsp:useBean id="container" scope="session" class="MyContainer.BucketContainer"/>
 
-        <div>
-            <input type="button" class = "lang" id = 'butEn' onclick=setAttr('lang','en') value=""/>
-            <input type="button" class = "lang" id = 'butRu' onclick=setAttr('lang','ru') value=""/>
-            <input type="button" class = "lang" id = 'butFr' onclick=setAttr('lang','fr') value=""/>
+    <div>
+        <input type="button" class = "lang" id = 'butEn' onclick=setAttr('lang','en') value=""/>
+        <input type="button" class = "lang" id = 'butRu' onclick=setAttr('lang','ru') value=""/>
+        <input type="button" class = "lang" id = 'butFr' onclick=setAttr('lang','fr') value=""/>
 
-            <c:if test="${empty pageContext.request.parameterMap.lang[0]}">
-                <c:if test="${empty cookie.lang.value}">
-                    <fmt:setLocale value='ru'/>
-                </c:if>
-                <c:if test="${cookie.lang.value eq 'ru'}">
-                    <fmt:setLocale value="ru"/>
-                </c:if>
-                <c:if test="${cookie.lang.value eq 'en'}">
-                    <fmt:setLocale value="en"/>
-                </c:if>
-                <c:if test="${cookie.lang.value eq 'fr'}">
-                    <fmt:setLocale value="fr"/>
-                </c:if>
+        <c:if test="${empty pageContext.request.parameterMap.lang[0]}">
+            <c:if test="${empty cookie.lang.value}">
+                <fmt:setLocale value='ru'/>
             </c:if>
-            <c:if test="${pageContext.request.parameterMap.lang[0] eq 'ru'}">
+            <c:if test="${cookie.lang.value eq 'ru'}">
                 <fmt:setLocale value="ru"/>
             </c:if>
-            <c:if test="${pageContext.request.parameterMap.lang[0] eq 'en'}">
+            <c:if test="${cookie.lang.value eq 'en'}">
                 <fmt:setLocale value="en"/>
             </c:if>
-            <c:if test="${pageContext.request.parameterMap.lang[0] eq 'fr'}">
+            <c:if test="${cookie.lang.value eq 'fr'}">
                 <fmt:setLocale value="fr"/>
             </c:if>
-        </div>
-    </head>
+        </c:if>
+        <c:if test="${pageContext.request.parameterMap.lang[0] eq 'ru'}">
+            <fmt:setLocale value="ru"/>
+        </c:if>
+        <c:if test="${pageContext.request.parameterMap.lang[0] eq 'en'}">
+            <fmt:setLocale value="en"/>
+        </c:if>
+        <c:if test="${pageContext.request.parameterMap.lang[0] eq 'fr'}">
+            <fmt:setLocale value="fr"/>
+        </c:if>
+    </div>
+</head>
 
-<body>
+<body onload="addMarkers(<%=session.getAttribute("lat")%>,<%=session.getAttribute("lng")%>,<%=session.getAttribute("name")%>,<%=session.getAttribute("amountOfShops")%>)">
 <div id="container">
     <div id="header">
         <div id = "allshopname">
@@ -55,20 +58,17 @@
 
         <%--<button class = "butbucket">--%>
         <%--</button>--%>
-
+        <button class = "butbucket" id="bucket" onclick="goToBucket('${pageContext.request.parameterMap.lang[0]}')" value="" title="<fmt:message key="goToBucket"/>"></button>
         <button class = "login" onclick="goToAuth('${pageContext.request.parameterMap.lang[0]}')" title="
 
-<%if (session.getAttribute("user") == null){%>
-    <fmt:message key="logInSystem"/>"></button>
+        <%if (session.getAttribute("user") == null){%>
+        <fmt:message key="logInSystem"/>"></button>
         <%}
         else{%>
         <fmt:message key="logOutSystem"/>"></button>
         <p class="userInfo"><fmt:message key="youEnterAs"/></p>
         <a class="userInfo1" href="myAccount.jsp?lang=${pageContext.request.parameterMap.lang[0]}" title="<fmt:message key="goToAccount"/>"><%=session.getAttribute("user")%></a>
-        <%if (!container.isEmpty()){%>
-            <button class="goToOrder" onclick="goToOrder('${pageContext.request.parameterMap.lang[0]}')"><fmt:message key="checkOut"/></button>
-        <%}
-        }%>
+        <%}%>
 
     </div>
 
@@ -136,55 +136,29 @@
     </div>
 
     <div class = "content"  id = "content1">
-                <c:forEach items="${container.ids}" var="id">
-                    <div class = "model1">
-                        <input type = image class = "imageInMiniPage1" src="/resources/images/${id}MainImage.jpg"
-                               onclick="goToDescription(${id},'${pageContext.request.parameterMap.lang[0]}')"/>
+        <button class="courierOrShop" id="shop" onclick="changeDelivery('shop','courier')"><fmt:message key="pickUp"/></button>
+        <button class="courierOrShop" id="courier" onclick="changeDelivery('courier','shop')"><fmt:message key="courier"/></button>
 
-                        <p class = "nameInMiniPage1"><fmt:message key="${id}name"/></p>
+        <div id="map">
+        </div>
 
-                        <p class = "inYourBucket"><fmt:message key="inYourBucket"/> ${container.getAmount(id)} <fmt:message key="psc"/></p>
-                        <p class = "descriptionInMiniPage1"><fmt:message key="${id}description"/></p>
-                    </div>
-                </c:forEach>
         <div class = "allInstruments">
             <c:forEach items="${container.ids}" var="id">
                 <p class = "textOfAllInstruments">
-                    <fmt:message key="${id}name"/><br><br>
-                    <fmt:message key="${id}price"/> x ${container.getAmount(id)} <fmt:message key = "psc"/> = ${m: multi(container.getAmount(id),container.getPrice((id)))}
-                    <hr>
+                        <fmt:message key="${id}name"/><br><br>
+                        <fmt:message key="${id}price"/> x ${container.getAmount(id)} <fmt:message key = "psc"/> = ${m: multi(container.getAmount(id),container.getPrice((id)))}
+                <hr>
                 ${container.addToFullCost(container.getAmount(id),container.getPrice((id)))}
                 </p>
             </c:forEach>
             <p class = "textOfAllInstruments"><fmt:message key="fullCost"/>: ${container.fullCost}</p>
             <hr>
-            <form action="/BucketServlet" method="post">
-                <button type = "submit" class = "cleanBucket" name="del" value="del"><fmt:message key="clear"/></button>
-            </form>
-            <button class ="cleanBucket" onclick="
-                    <%if (session.getAttribute("user") == null){%>
-                        goToAuth('${pageContext.request.parameterMap.lang[0]}')
-                    <%}
-                    else{
-                        if (!container.isEmpty()){%>
-                            goToOrder('${pageContext.request.parameterMap.lang[0]}')
-                       <%}
-                        else{
-
-                        }
-                     }%>
-                    "><fmt:message key="checkOut"/></button>
-
         </div>
-
     </div>
 
     <div id="footer" >
 
     </div>
 </div>
-<!--<form action="InstrumentDetailsServlet" method="get">
-    <input type = image src = "resources/CSS/">
-</form>-->
 </body>
 </html>

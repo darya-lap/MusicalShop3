@@ -42,7 +42,7 @@
         </form>
 
 
-            <a href="/resources/JSP/bucket.jsp"><button
+            <a href="/resources/JSP/bucket.jsp?lang=<%=l%>"><button
                     title="<%out.println(resourceBundle.getString("goToBucket"));%>"
                        class = "forwardToBucket"><%=resourceBundle.getString("buy")%>
             </button>

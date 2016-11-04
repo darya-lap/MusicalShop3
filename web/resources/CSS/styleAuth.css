@@ -8,8 +8,7 @@
     background:#270303;
     width:400px;
     height:220px;
-    margin:auto;
-    margin-top:100px;
+    margin: 100px auto auto;
     text-align:center;
 }
 
@@ -17,8 +16,7 @@
     background:#270303;
     width:400px;
     height:280px;
-    margin:auto;
-    margin-top:100px;
+    margin: 100px auto auto;
     text-align:center;
 }
 
@@ -27,6 +25,15 @@
     top:20px;
     color:#ffe6a9;
     font-size:25px;
+    outline-color: #7a4930;
+}
+
+.loginAndPasswordLabel1{
+    position:relative;
+    top:20px;
+    color: rgba(219, 38, 42, 0.79);
+    font-size:25px;
+    outline-color: #7a4930;
 }
 
 .loginAndPasswordInput{
@@ -34,6 +41,7 @@
     height:30px;
     margin-top:20px;
     border-color:#e44e4e;
+    outline-color: #7a4930;
 }
 
 .submitButton{
@@ -43,6 +51,7 @@
     margin-top:20px;
     width:120px;
     border-radius:15px;
+    outline-color: #7a4930;
 }
 
 .submitButton:hover{
