@@ -5,12 +5,13 @@
     margin-top:20px;
 }
 
-.allInstruments{
+.adressOfShop{
     text-align:center;
     position:relative;
-    top:-315px;
+    top:-335px;
     left:530px;
     width:290px;
+    height:300px;
     background-color:rgba(211, 216, 211, 0.66)
 }
 
@@ -44,4 +45,68 @@
 
 #courier{
     border-color:#ffe6a9;
+}
+
+.selectText{
+    font-size:35px;
+    color:#800606
+}
+
+.selectShop{
+    font-size:25px;
+    background-color:#d0bc89;
+    color:#390000;
+    outline-color:#91825e;
+    border-radius:15px;
+
+}
+
+.yourOrder{
+    position:relative;
+    top:-340px;
+    left:160px;
+    width:500px;
+    text-align:center;
+    background-color: #e8d09a
+}
+
+.yourOrder1{
+    position:relative;
+    top:50px;
+    left:160px;
+    width:500px;
+    text-align:center;
+    background-color: #e8d09a
+}
+
+.toPay{
+    margin:5px;
+    color:#ffe6a9;
+    font-size:20px;
+    background-color:#840a0a;
+    border-color:#6d0707;
+    border-radius:20px;
+    outline: none;
+}
+
+.toPay:hover{
+    cursor:pointer;
+}
+
+#courier1{
+    background-color:rgba(255, 230, 169, 0.33);
+    height:550px;
+    text-align:center;
+}
+
+.enterAdress{
+    font-size:30px;
+    color:#390000;
+}
+
+.inputAdress{
+    height:40px;
+    width:500px;
+    font-size:20px;
+    background-color:rgb(224, 208, 193);
 }

@@ -1,5 +1,7 @@
 package servlets;
 
+import DAO.Factory1;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,10 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 import static workWithServletes.returnCookieLang.returnCookieLang;
 
-@WebServlet(name = "OrderServlet")
+@WebServlet(name = "OrderServlet", urlPatterns = "/OrderServlet")
 public class OrderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -18,40 +22,22 @@ public class OrderServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+    try {
+        List<Integer> number = Factory1.getInstance().getShopDAO().getAllShopsNumbers();
+        List<Float> lat = Factory1.getInstance().getShopDAO().getAllShopsLat();
+        List<Float> lng = Factory1.getInstance().getShopDAO().getAllShopsLng();
+        List<String> name = Factory1.getInstance().getShopDAO().getAllShopsNames();
 
-       /* Session session1 = null;
-        Transaction tx = null;
-        try {
-            session1 = HibernateUtil.getSessionFactory().getCurrentSession();
-            tx = session1.beginTransaction();
-            ArrayList<Integer> number = new ArrayList<>();
-            ArrayList<Float> lat = new ArrayList<>();
-            ArrayList<Float> lng = new ArrayList<>();
-            ArrayList<String> name = new ArrayList<>();
-            List list = session1.createQuery("FROM ShopConnect").list();
-            for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
-                ShopConnect cur = (ShopConnect) iterator.next();
-                number.add(cur.getNumber_of_shop());
-                lat.add(cur.getLat());
-                lng.add(cur.getLng());
-                name.add(cur.getName_of_shop());
-            }
-            session.setAttribute("numberOfShop",number);
-            session.setAttribute("lat",lat);
-            session.setAttribute("lng",lng);
-            session.setAttribute("name",name);
-            session.setAttribute("amountOfShops",number.size());
-            tx.commit();
-        }
-        catch (HibernateException e) {
-            if (tx != null)
-                tx.rollback();
-            e.printStackTrace();
-        }
-        finally {
-            assert session1 != null;
-            session1.close();
-        }*/
+        session.setAttribute("lat", lat.toString());
+        session.setAttribute("lng", lng.toString());
+        session.setAttribute("name", name.toString());
+        session.setAttribute("amountOfShops", number.size());
+        session.setAttribute("id_shop", number.toString());
+
+    }
+    catch (SQLException e){
+        e.printStackTrace();
+    }
 
         String l=returnCookieLang(session,request);
         response.sendRedirect("/resources/JSP/order.jsp?lang="+l);

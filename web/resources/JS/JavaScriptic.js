@@ -84,6 +84,15 @@ function goToOrder(l) {
     window.location.href = 'http://localhost:8080/OrderServlet?lang='+l;
 }
 
+function goToRecord(l) {
+    var a = 'http://localhost:8080/RecordToDBServlet?lang='+l;
+    a = a + '&shop=';
+    a = a + document.getElementById("selector").value;
+    a = a + '&courier=';
+    a = a + document.getElementById("ololo").value;
+    window.location.href = a;
+}
+
 function getCookie (name) {
     var cookies = getCookies();
     return cookies[name] || null;
@@ -139,29 +148,63 @@ function getCookies() {
     return cookies;
 }
 
-function initMap(lt, lg) {
-    return new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
-        center: {lat:lt, lng: lg}
-    });
+function splitString(all){
+    var list = all.split(", ");
+    return list;
 }
 
-function addMarkers(lt,lg,name,size) {
-    initMap(59.957049,30.282465);
+function splitString1(all){
+    var list = all.split("; ");
+    return list;
+}
+
+function initMap(lt1,lg1,name1,size,secretMessages1) {
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: {lat:59.987049, lng: 30.312465}
+    });
+
+    var lt = splitString(lt1);
+    var lg = splitString(lg1);
+    var name = splitString(name1);
+    var secretMessages = splitString1(secretMessages1);
+
 
     for(var i=0; i<size; i++) {
-        var myLatLng = {lat: lt[i], lng: lg[i]};
+        var myLatLng = {lat: parseFloat(lt[i]), lng: parseFloat(lg[i])};
         var marker = new google.maps.Marker({
             position: myLatLng,
-            map: map,
+            map:map,
             title: name[i]
         });
+        attachSecretMessage(marker, secretMessages[i]);
     }
+    return map;
+}
+
+function attachSecretMessage(marker, secretMessage) {
+    var infowindow = new google.maps.InfoWindow({
+        content: secretMessage
+    });
+
+    marker.addListener('click', function() {
+        infowindow.open(marker.get('map'), marker);
+    });
 }
 
 function changeDelivery(x,y){
     document.getElementById(x).style.borderColor='#7b0000';
+    document.getElementById(x+1).style.display = 'block';
     document.getElementById(y).style.borderColor='#ffe6a9';
+    document.getElementById(y+1).style.display = 'none';
+}
+
+function changeShop() {
+    document.getElementById("usePickUp").innerText = document.getElementById("selector").value;
+}
+
+function changeAdress(){
+    document.getElementById("useCourier").innerText = document.getElementById("ololo").value;
 }
 
 

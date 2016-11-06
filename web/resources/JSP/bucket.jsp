@@ -55,7 +55,7 @@
 
         <%--<button class = "butbucket">--%>
         <%--</button>--%>
-
+        <button class = "butbucket" id="bucket" onclick="goToBucket('${pageContext.request.parameterMap.lang[0]}')" value="" title="<fmt:message key="goToBucket"/>"></button>
         <button class = "login" onclick="goToAuth('${pageContext.request.parameterMap.lang[0]}')" title="
 
 <%if (session.getAttribute("user") == null){%>

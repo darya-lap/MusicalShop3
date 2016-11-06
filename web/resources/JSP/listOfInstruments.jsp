@@ -7,6 +7,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="java.util.ResourceBundle" %>
+<%@ page import="org.hibernate.sql.ordering.antlr.Factory" %>
+<%@ page import="static org.hibernate.sql.ordering.antlr.Factory.*" %>
+<%@ page import="DAO.Factory1" %>
 <%--
   Created by IntelliJ IDEA.
   User: Дарья
@@ -207,44 +210,29 @@
 
         <div class = "content"  id = "content1">
             <%
-                Session session1 = null;
-                Transaction tx = null;
-                try {
-                    session1 = HibernateUtil.getSessionFactory().openSession();
-                    tx = session1.beginTransaction();
-                    List list = session1.createQuery("FROM InstrumentBean ").list();
-                    for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-                        InstrumentBean cur = (InstrumentBean) iterator.next();
-                        String name = cur.getId() + "name";
-                        String description = cur.getId() + "description";
+            List list = Factory1.getInstance().getInstrumentDAO().getAllInstruments();
+            for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+                InstrumentBean cur = (InstrumentBean) iterator.next();
+                String name = cur.getId() + "name";
+                String description = cur.getId() + "description";
             %>
-            <jsp:setProperty name="instrumentBean" property="id" value="<%=cur.getId()%>"/>
-            <jsp:setProperty name="instrumentBean" property="type" value="<%=cur.getType()%>"/>
-            <jsp:setProperty name="instrumentBean" property="subtype" value="<%=cur.getSubtype()%>"/>
-            <jsp:setProperty name="instrumentBean" property="price" value="<%=cur.getPrice()%>"/>
-            <jsp:setProperty name="instrumentBean" property="name" value="<%=resourceBundle.getString(name)%>"/>
-            <jsp:setProperty name="instrumentBean" property="description" value="<%=resourceBundle.getString(description)%>"/>
+                <jsp:setProperty name="instrumentBean" property="id" value="<%=cur.getId()%>"/>
+                <jsp:setProperty name="instrumentBean" property="type" value="<%=cur.getType()%>"/>
+                <jsp:setProperty name="instrumentBean" property="subtype" value="<%=cur.getSubtype()%>"/>
+                <jsp:setProperty name="instrumentBean" property="price" value="<%=cur.getPrice()%>"/>
+                <jsp:setProperty name="instrumentBean" property="name" value="<%=resourceBundle.getString(name)%>"/>
+                <jsp:setProperty name="instrumentBean" property="description" value="<%=resourceBundle.getString(description)%>"/>
 
-            <%if (f.equals("all")){%>
-            <%@include file="miniInstrumentsPage.jsp"%>
-
-            <%}
-            else{
-                if ((cur.getType().equals(f)) || (cur.getSubtype().equals(f))){%>
-            <%@include file="miniInstrumentsPage.jsp"%>
-            <%}
-            }
-            }
-                tx.commit();
-            } catch (HibernateException e) {
-                if (tx != null)
-                    tx.rollback();
-                e.printStackTrace();
-            } finally {
-                session1.close();
+                <%if (f.equals("all")){%>
+                    <%@include file="miniInstrumentsPage.jsp"%>
+                <%}
+                else{
+                    if ((cur.getType().equals(f)) || (cur.getSubtype().equals(f))){%>
+                         <%@include file="miniInstrumentsPage.jsp"%>
+                    <%}
+                }
             }
             %>
-
 
         </div>
 
