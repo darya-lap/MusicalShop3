@@ -87,9 +87,9 @@ function goToOrder(l) {
 function goToRecord(l) {
     var a = 'http://localhost:8080/RecordToDBServlet?lang='+l;
     a = a + '&shop=';
-    a = a + document.getElementById("selector").value;
+    a = a + document.getElementById("shop3").value;
     a = a + '&courier=';
-    a = a + document.getElementById("ololo").value;
+    a = a + document.getElementById("courier3").value;
     window.location.href = a;
 }
 
@@ -195,16 +195,18 @@ function attachSecretMessage(marker, secretMessage) {
 function changeDelivery(x,y){
     document.getElementById(x).style.borderColor='#7b0000';
     document.getElementById(x+1).style.display = 'block';
+
     document.getElementById(y).style.borderColor='#ffe6a9';
     document.getElementById(y+1).style.display = 'none';
+    document.getElementById(y+3).value = null;
 }
 
 function changeShop() {
-    document.getElementById("usePickUp").innerText = document.getElementById("selector").value;
+    document.getElementById("usePickUp").innerText = document.getElementById("shop3").value;
 }
 
 function changeAdress(){
-    document.getElementById("useCourier").innerText = document.getElementById("ololo").value;
+    document.getElementById("useCourier").innerText = document.getElementById("courier3").value;
 }
 
 

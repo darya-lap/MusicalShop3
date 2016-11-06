@@ -4,6 +4,7 @@ public class Factory1 {
 
     private static ShopDAO shopDAO = null;
     private static InstrumentDAO instrumentDAO = null;
+    private static OrderDAO orderDAO = null;
     private static Factory1 instance = null;
 
     public static synchronized Factory1 getInstance(){
@@ -18,6 +19,13 @@ public class Factory1 {
             shopDAO = new ShopDAO();
         }
         return shopDAO;
+    }
+
+    public OrderDAO getOrderDAO(){
+        if (orderDAO == null){
+            orderDAO = new OrderDAO();
+        }
+        return orderDAO;
     }
 
     public InstrumentDAO getInstrumentDAO(){
