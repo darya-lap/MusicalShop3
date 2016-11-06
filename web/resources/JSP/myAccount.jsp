@@ -137,18 +137,23 @@
     <div class = "content"  id = "content1">
         <p class="welcome"><fmt:message key="welcome"/>, <%=session.getAttribute("user")%></p>
 
-        <div class="goToBucketFromAccount">
+        <button class="goToBucketFromAccount" id = "b1" onclick="goToHistory('${pageContext.request.parameterMap.lang[0]}')">
             <p class="textInAccountBucket"><fmt:message key="goToBucket"/></p>
-            <button class = "butbucket" onclick="goToBucket('${pageContext.request.parameterMap.lang[0]}')" value="" title="<fmt:message key="goToBucket"/>"></button>
-        </div>
+        </button>
 
-        <div class="goToBucketFromAccount">
-            <p class="initParam1">
+        <button class="goToBucketFromAccount" id="b2">
+            <p class="textInAccountBucket">
                 <fmt:message key="defaultTab"/>:<br>
                 <%=session.getAttribute("paramDef")%>
 
             </p>
-        </div>
+        </button>
+
+        <button class="goToBucketFromAccount" id="b3" onclick="goToHistory('${pageContext.request.parameterMap.lang[0]}')">
+            <p class="textInAccountBucket">
+                <fmt:message key="history"/>
+            </p>
+        </button>
 
     </div>
 

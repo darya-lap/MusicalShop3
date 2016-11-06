@@ -56,5 +56,4 @@ public class RecordToDBServlet extends HttpServlet {
         String l=returnCookieLang(session,request);
         response.sendRedirect("/resources/JSP/endOfOrder.jsp?lang="+l);
     }
-
 }

@@ -3,6 +3,7 @@ package DAO;
 import ConnectToDB.InstrumentBean;
 import DB.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,10 +13,12 @@ public class InstrumentDAO {
 
     public InstrumentBean getInstrumentById(Integer instrument_id) throws SQLException {
         Session session = null;
-        InstrumentBean instrumentBean = null;
+        List instrumentBean = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            instrumentBean = session.load(InstrumentBean.class, instrument_id);
+            Query query = session.createQuery("from InstrumentBean where id = :instrument_id");
+            query.setParameter("instrument_id", instrument_id);
+            instrumentBean = query.list();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -23,7 +26,7 @@ public class InstrumentDAO {
                 session.close();
             }
         }
-        return instrumentBean;
+        return (InstrumentBean) instrumentBean.get(0);
     }
 
     public List getAllInstruments() throws SQLException {

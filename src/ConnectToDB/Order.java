@@ -1,15 +1,13 @@
 package ConnectToDB;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
 @Entity
 @Table(name="orders")
 @XmlRootElement
+@NamedQuery(name = "Order.findByUser", query = "SELECT h FROM Order h WHERE h.user = :user")
 public class Order {
     @Id
     //@Basic(optional = false)
@@ -29,10 +27,8 @@ public class Order {
     private String shop;
 
 
-    public Order(int order_id, String user, int instrument_id, int amount, Date date){
-        this.order_id=order_id;
-        this.user =user;
-        this.instrument_id = instrument_id;
+    public Order(int id, int amount, Date date){
+        this.instrument_id = id;
         this.amount = amount;
         this.curDate = date;
     }

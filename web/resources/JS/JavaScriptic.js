@@ -85,12 +85,11 @@ function goToOrder(l) {
 }
 
 function goToRecord(l) {
-    var a = 'http://localhost:8080/RecordToDBServlet?lang='+l;
-    a = a + '&shop=';
-    a = a + document.getElementById("shop3").value;
-    a = a + '&courier=';
-    a = a + document.getElementById("courier3").value;
-    window.location.href = a;
+    window.location.href = 'http://localhost:8080/RecordToDBServlet?lang='+l+'&shop=' + document.getElementById("shop3").value + '&courier=' + document.getElementById("courier3").value;
+}
+
+function goToHistory(l) {
+    window.location.href = 'http://localhost:8080/resources/JSP/history.jsp?lang='+l;
 }
 
 function getCookie (name) {
