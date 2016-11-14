@@ -8,6 +8,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 
 import static workWithServletes.addItemToBean.addItemToBean;
+import static workWithServletes.returnCookieFilter.returnCookieFilter;
 import static workWithServletes.returnCookieLang.returnCookieLang;
 
 @WebServlet(name = "BucketServlet", urlPatterns = "/BucketServlet")
@@ -33,7 +34,8 @@ public class BucketServlet extends HttpServlet {
 
 
         String l=returnCookieLang(session,request);
-        response.sendRedirect("/resources/JSP/listOfInstruments.jsp?lang="+l);
+        String f = returnCookieFilter(session,request);
+        response.sendRedirect("/resources/JSP/listOfInstruments.jsp?lang="+l+"&filter="+f);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

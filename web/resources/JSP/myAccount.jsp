@@ -1,3 +1,9 @@
+<%@ page import="ConnectToDB.Comment" %>
+<%@ page import="DAO.Factory1" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="m" uri="/WEB-INF/tld/m.tld" %>
@@ -41,7 +47,13 @@
         <c:if test="${pageContext.request.parameterMap.lang[0] eq 'fr'}">
             <fmt:setLocale value="fr"/>
         </c:if>
+        <script>
+            setInterval(myTimer,1000,'${pageContext.request.parameterMap.lang[0]}');
+        </script>
     </div>
+
+
+
 </head>
 <body>
 <div id="container">
@@ -137,7 +149,7 @@
     <div class = "content"  id = "content1">
         <p class="welcome"><fmt:message key="welcome"/>, <%=session.getAttribute("user")%></p>
 
-        <button class="goToBucketFromAccount" id = "b1" onclick="goToHistory('${pageContext.request.parameterMap.lang[0]}')">
+        <button class="goToBucketFromAccount" id = "b1" onclick="goToBucket('${pageContext.request.parameterMap.lang[0]}')">
             <p class="textInAccountBucket"><fmt:message key="goToBucket"/></p>
         </button>
 
@@ -155,9 +167,34 @@
             </p>
         </button>
 
+        <p class = "leftComment"><fmt:message key="leftComment"/></p>
+        <input type="text" id="commentText" size="500"/>
+        <button type="button" onclick="loadXMLDoc()" class="but1"><fmt:message key="enter"/></button>
+
+        <div id="RESULT">
+            <%
+                try{
+                    List list = Factory1.getInstance().getCommentDAO().getAllComments();
+                    String date=null;
+                    String user=null;
+                    String text=null;
+                    for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+                        Comment cur = (Comment) iterator.next();
+                        user = cur.getUser();
+                        date = cur.getDate();
+                        text = cur.getContent();
+            %>
+            <p class="comment1">user: <%=user%></p>
+            <p class="comment2">date: <%=date%></p>
+            <p class="comment3"><%=text%></p><hr>
+            <%}
+            }
+            catch(SQLException e){ e.printStackTrace();}%>
+        </div>
     </div>
 
     <div id="footer" >
+        <p id="time1"></p>
     </div>
 <!--<form action="InstrumentDetailsServlet" method="get">
     <input type = image src = "resources/CSS/">

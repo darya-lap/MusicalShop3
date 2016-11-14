@@ -30,16 +30,62 @@
 #b1{
     position:relative;
     left:30px;
+    top:-30px;
 }
 
 #b2{
     position:relative;
-    top:-10px;
+    top:-40px;
     left:30px;
 }
 
 #b3{
     position:relative;
-    top:17px;
+    top:-13px;
     left:30px;
+}
+
+.leftComment{
+    font-size:25px;;
+    margin-left:20px;
+    color:#ffe6a9;
+}
+
+#commentText{
+    background:rgb(230, 217, 184);
+    margin-left:20px;
+    width:600px;
+    height:50px;
+    border:none;
+    font-size:20px;
+    outline:#390000;
+    color:#390000;
+}
+
+#RESULT{
+    background:#ffe6a9;
+}
+
+.comment1{
+    font-size:20px;
+    color:#390000;
+    margin-left: 10px;
+}
+
+.comment2{
+    font-size:15px;
+    color:#a9986f;
+    margin-left: 10px;
+}
+
+.comment3{
+    font-size:20px;
+    color:#390000;
+    margin-left: 10px;
+}
+
+#time1{
+    color:#ffffff;
+    margin-left:10px;
+    font-size:20px;
 }

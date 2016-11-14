@@ -6,6 +6,7 @@ public class Factory1 {
     private static InstrumentDAO instrumentDAO = null;
     private static OrderDAO orderDAO = null;
     private static Factory1 instance = null;
+    private static CommentDAO commentDAO = null;
 
     public static synchronized Factory1 getInstance(){
         if (instance == null){
@@ -33,6 +34,13 @@ public class Factory1 {
             instrumentDAO = new InstrumentDAO();
         }
         return instrumentDAO;
+    }
+
+    public CommentDAO getCommentDAO(){
+        if (commentDAO == null){
+            commentDAO = new CommentDAO();
+        }
+        return commentDAO;
     }
 
 }

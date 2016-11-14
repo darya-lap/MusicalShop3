@@ -13,6 +13,7 @@
         <mapping resource="DB/instruments.hbm.xml"/>
         <mapping resource="DB/shops.hbm.xml"/>
         <mapping resource="DB/orders.hbm.xml.xsl"/>
+        <mapping resource="DB/comments.hbm.xml"/>
 
     </session-factory>
 

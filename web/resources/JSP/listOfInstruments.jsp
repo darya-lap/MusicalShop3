@@ -1,15 +1,8 @@
-<%@ page import="org.hibernate.HibernateException" %>
-<%@ page import="org.hibernate.Session" %>
-<%@ page import="org.hibernate.Transaction" %>
-<%@ page import="DB.HibernateUtil" %>
 <%@ page import="ConnectToDB.InstrumentBean" %>
-<%@ page import="java.util.Iterator" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Locale" %>
-<%@ page import="java.util.ResourceBundle" %>
-<%@ page import="org.hibernate.sql.ordering.antlr.Factory" %>
-<%@ page import="static org.hibernate.sql.ordering.antlr.Factory.*" %>
 <%@ page import="DAO.Factory1" %>
+<%@ page import="java.util.*" %>
+<%@ page import="static org.hibernate.sql.ordering.antlr.Factory.*" %>
+<%@ page import="static com.sun.activation.registries.LogSupport.log" %>
 <%--
   Created by IntelliJ IDEA.
   User: Дарья
@@ -82,9 +75,12 @@
                 cookieFilter = new Cookie("filter", f);
             }
             response.addCookie(cookieFilter);
+            log((new Date()).toString()+"User "+session.getAttribute("user"));
         %>
 
     </div>
+
+
 </head>
 
 <body>
@@ -109,7 +105,7 @@
         out.print(resourceBundle.getString("logOutSystem"));%>
         "></button>
             <p class="userInfo"><%out.print(resourceBundle.getString("youEnterAs"));%></p>
-            <a class="userInfo1" href="myAccount.jsp?lang=<%=l%>" title="<%out.print(resourceBundle.getString("goToAccount"));%>"><%=session.getAttribute("user")%></a>
+            <a class="userInfo1" href="/resources/JSP/myAccount.jsp?lang=<%=l%>" title="<%out.print(resourceBundle.getString("goToAccount"));%>"><%=session.getAttribute("user")%></a>
             <%if (!container.isEmpty()){%>
             <button class="goToOrder" onclick="goToOrder('${pageContext.request.parameterMap.lang[0]}')"><%out.print(resourceBundle.getString("checkOut"));%></button>
             <%}
@@ -119,33 +115,33 @@
 
         <div id="menu">
             <div id = "catalogue" >
-                <input type="button" class="catal" value="<%out.print(resourceBundle.getString("catalog"));%>" onclick="setAttr('filter','all')"/>
+                <input type="button" class="catal" value="<%out.print(resourceBundle.getString("catalog"));%>" onclick="setAttr1('filter','all')"/>
             </div>
 
             <div id = "instruments">
                 <ul class="dropdown">
                     <li class="dropdown-top">
-                        <input type="button" class="menuType" onclick="setAttr('filter','string')" value="<%
+                        <input type="button" class="menuType" onclick="setAttr1('filter','string')" value="<%
                                     out.println(resourceBundle.getString("string"));
                                 %>"/>
 
                         <ul class="dropdown-inside">
-                            <li><input type="button" class="menuSubtype" onclick="setAttr('filter','guitar')" value="<%
+                            <li><input type="button" class="menuSubtype" onclick="setAttr1('filter','guitar')" value="<%
                                     out.println(resourceBundle.getString("guitars"));
                                 %>"/>
                             </li>
 
-                            <li><input type="button" class="menuSubtype" onclick="setAttr('filter','violin')" value="<%
+                            <li><input type="button" class="menuSubtype" onclick="setAttr1('filter','violin')" value="<%
                                     out.println(resourceBundle.getString("violins"));
                                 %>"/>
                             </li>
 
-                            <li><input type="button" class="menuSubtype" onclick="setAttr('filter','cello')" value="<%
+                            <li><input type="button" class="menuSubtype" onclick="setAttr1('filter','cello')" value="<%
                                     out.println(resourceBundle.getString("cellos"));
                                 %>"/>
                             </li>
 
-                            <li><input type="button" class="menuSubtype" onclick="setAttr('filter','piano')" value="<%
+                            <li><input type="button" class="menuSubtype" onclick="setAttr1('filter','piano')" value="<%
                                     out.println(resourceBundle.getString("pianos"));
                                 %>"/>
                             </li>
@@ -153,28 +149,28 @@
                     </li>
 
                     <li class="dropdown-top">
-                        <input type="button" class="menuType" onclick="setAttr('filter','wind')" value="<%
+                        <input type="button" class="menuType" onclick="setAttr1('filter','wind')" value="<%
                                     out.println(resourceBundle.getString("wind"));
                                 %>"/>
 
                         <ul class="dropdown-inside">
 
-                            <li><input type="button" class="menuSubtype" onclick="setAttr('filter','sax')" value="<%
+                            <li><input type="button" class="menuSubtype" onclick="setAttr1('filter','sax')" value="<%
                                     out.println(resourceBundle.getString("sax"));
                                 %>"/>
                             </li>
 
-                            <li><input type="button" class="menuSubtype" onclick="setAttr('filter','flute')" value="<%
+                            <li><input type="button" class="menuSubtype" onclick="setAttr1('filter','flute')" value="<%
                                     out.println(resourceBundle.getString("flutes"));
                                 %>"/>
                             </li>
 
-                            <li><input type="button" class="menuSubtype" onclick="setAttr('filter','pipe')" value="<%
+                            <li><input type="button" class="menuSubtype" onclick="setAttr1('filter','pipe')" value="<%
                                     out.println(resourceBundle.getString("pipes"));
                                 %>"/>
                             </li>
 
-                            <li><input type="button" class="menuSubtype" onclick="setAttr('filter','clarinet')" value="<%
+                            <li><input type="button" class="menuSubtype" onclick="setAttr1('filter','clarinet')" value="<%
                                     out.println(resourceBundle.getString("clarinets"));
                                 %>"/>
                             </li>
@@ -182,23 +178,23 @@
                     </li>
 
                     <li class="dropdown-top">
-                        <input type="button" class="menuType" onclick="setAttr('filter','keyboard')" value="<%
+                        <input type="button" class="menuType" onclick="setAttr1('filter','keyboard')" value="<%
                                     out.println(resourceBundle.getString("keyboards"));
                                 %>"/>
 
                         <ul class="dropdown-inside">
 
-                            <li><input type="button" class="menuSubtype" onclick="setAttr('filter','synthesizer')" value="<%
+                            <li><input type="button" class="menuSubtype" onclick="setAttr1('filter','synthesizer')" value="<%
                                     out.println(resourceBundle.getString("synthesizers"));
                                 %>"/>
                             </li>
 
-                            <li><input type="button" class="menuSubtype" onclick="setAttr('filter','accordion')" value="<%
+                            <li><input type="button" class="menuSubtype" onclick="setAttr1('filter','accordion')" value="<%
                                     out.println(resourceBundle.getString("accordions"));
                                 %>"/>
                             </li>
 
-                            <li><input type="button" class="menuSubtype" onclick="setAttr('filter','bayan')" value="<%
+                            <li><input type="button" class="menuSubtype" onclick="setAttr1('filter','bayan')" value="<%
                                     out.println(resourceBundle.getString("bayans"));
                                 %>"/>
                             </li>

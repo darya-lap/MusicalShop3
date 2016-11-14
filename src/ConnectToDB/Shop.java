@@ -8,11 +8,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name="shops")
 @XmlRootElement
-//@NamedQueries(value = {
-//        @NamedQuery(name = "onnect.findAll", query = "SELECT h FROM InstrumentBean"),
-//        @NamedQuery(name = "InstrumentBean.findById", query = "SELECT h FROM UserConnect h WHERE h.id = :id"),
-//        @NamedQuery(name = "UserConnect.findByType", query = "SELECT h FROM InstrumentBean h WHERE h.type = :type"),
-//        @NamedQuery(name = "UserConnect.findBySubtype", query = "SELECT h FROM InstrumentBean h WHERE h.subtype = :subtype")})
 public class Shop {
 
     @Id

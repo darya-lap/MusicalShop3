@@ -1,0 +1,9 @@
+<hibernate-mapping>
+    <class name="ConnectToDB.Comment" table="comment">
+        <id name="date" type="string" column="date">
+            <!--<generator class="increment"/>-->
+        </id>
+        <property name="user" column="user" type="string"/>
+        <property name="content" column="content" type="string"/>
+    </class>
+</hibernate-mapping>

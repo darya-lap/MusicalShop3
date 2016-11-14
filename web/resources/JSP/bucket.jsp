@@ -148,6 +148,7 @@
                     </div>
                 </c:forEach>
         <div class = "allInstruments">
+            ${container.clearFullCost()}
             <c:forEach items="${container.ids}" var="id">
                 <p class = "textOfAllInstruments">
                     <fmt:message key="${id}name"/><br><br>

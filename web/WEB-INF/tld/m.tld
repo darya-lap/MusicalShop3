@@ -14,11 +14,6 @@
         <function-signature>java.lang.Integer multi(java.lang.Integer,java.lang.Integer)</function-signature>
     </function>
 
-    <function>
-        <name>StringToArrayListFloat</name>
-        <function-class>JSTL.Utils</function-class>
-        <function-signature>void StringtoArrayListFloat(java.lang.String,java.util.ArrayList)</function-signature>
-    </function>
 
     <function>
         <name>StringToArrayListString</name>

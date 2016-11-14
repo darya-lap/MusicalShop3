@@ -157,7 +157,7 @@ function splitString1(all){
     return list;
 }
 
-function initMap(lt1,lg1,name1,size,secretMessages1) {
+function initMap(lg1,lt1,name1,size,secretMessages1) {
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 12,
         center: {lat:59.987049, lng: 30.312465}
@@ -168,13 +168,14 @@ function initMap(lt1,lg1,name1,size,secretMessages1) {
     var name = splitString(name1);
     var secretMessages = splitString1(secretMessages1);
 
-
-    for(var i=0; i<size; i++) {
-        var myLatLng = {lat: parseFloat(lt[i]), lng: parseFloat(lg[i])};
+    for (var i = 0; i < size; i++) {
         var marker = new google.maps.Marker({
-            position: myLatLng,
-            map:map,
-            title: name[i]
+            position: {
+                lat: parseFloat(lt[i]),
+                lng: parseFloat(lg[i]),
+                title: name[i].toString
+            },
+            map: map
         });
         attachSecretMessage(marker, secretMessages[i]);
     }
@@ -206,6 +207,42 @@ function changeShop() {
 
 function changeAdress(){
     document.getElementById("useCourier").innerText = document.getElementById("courier3").value;
+}
+
+function loadXMLDoc() {
+    var comment = document.getElementById("commentText").value;
+    document.getElementById("commentText").value = null;
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    else // code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    xmlhttp.onreadystatechange=function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+// Action to do
+            document.getElementById("RESULT").innerHTML=xmlhttp.responseText;
+    }
+    xmlhttp.open("GET","/resources/JSP/test.jsp?commentText="+comment,true);
+    xmlhttp.send();
+}
+
+
+
+
+function myTimer(l) {
+    var date = new Date();
+    var options ={
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        weekday: 'long',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
+    };
+    document.getElementById("time1").innerText = date.toLocaleString(l,options);
+    //alert("hi");
 }
 
 
