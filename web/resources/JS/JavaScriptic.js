@@ -242,7 +242,6 @@ function myTimer(l) {
         second: 'numeric'
     };
     document.getElementById("time1").innerText = date.toLocaleString(l,options);
-    //alert("hi");
 }
 
 

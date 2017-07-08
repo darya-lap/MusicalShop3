@@ -52,49 +52,7 @@
     </div>
 </head>
 
-<%/*
-    Cookie cookieLang;
-    String l;
-    if (request.getParameter("lang") != null){
-        cookieLang = new Cookie("lang", request.getParameter("lang"));
-        l = request.getParameter("lang");
-    }
-    else{
-        Cookie [] cookies = request.getCookies();
-        l = "ru";
-        if (cookies != null){
-            for (Cookie c: cookies){
-                if (c.getName().equals("lang")){
-                    l = c.getValue();
-                    break;
-                }
-            }
-        }
-        session.setAttribute("lang",l);
-        cookieLang = new Cookie("lang", l);
-    }
 
-    Locale locale;
-    locale = new Locale(l);
-    ResourceBundle resourceBundle = ResourceBundle.getBundle("prop", locale);
-    response.addCookie(cookieLang);*/%>
-<%
-
-    //String id = session.getAttribute("id_shop").toString();
-    //ArrayList<Integer> ids = new ArrayList<>();
-    //StringtoArrayListInteger(id,ids);
-    //String lng = session.getAttribute("lat").toString();
-    //String lat = session.getAttribute("lng").toString();
-    //String name = session.getAttribute("name").toString();
-    //ArrayList<String> names = new ArrayList<>();
-    //StringtoArrayListString(name,names);
-    //Integer amountOfShop = Integer.parseInt(session.getAttribute("amountOfShops").toString());
-    //StringBuilder secretMessage = new StringBuilder("");
-//    for (int i = 0; i < amountOfShop;i++){
-//        secretMessage.append(resourceBundle.getString(ids.get(i).toString()));
-//        if (i+1 != amountOfShop) secretMessage.append("; ");
-//    }
-%>
 <body onload="initMap('${order.lng}','${order.lat}','${order.names}',${order.amount_of_shops},'${order.secretMessage}')">
 
 <div id="container">

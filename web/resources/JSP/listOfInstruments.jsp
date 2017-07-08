@@ -1,15 +1,7 @@
 <%@ page import="ConnectToDB.InstrumentBean" %>
 <%@ page import="DAO.Factory1" %>
 <%@ page import="java.util.*" %>
-<%@ page import="static org.hibernate.sql.ordering.antlr.Factory.*" %>
 <%@ page import="static com.sun.activation.registries.LogSupport.log" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Дарья
-  Date: 16.10.2016
-  Time: 10:02
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"  pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -229,16 +221,11 @@
                 }
             }
             %>
-
         </div>
 
         <div id="footer" >
 
         </div>
     </div>
-<!--<form action="InstrumentDetailsServlet" method="get">
-    <input type = image src = "resources/CSS/profilemini.jpg">
-</form>-->
-
 </body>
 </html>

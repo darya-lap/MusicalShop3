@@ -14,10 +14,6 @@
     <jsp:useBean id="container" scope="session" class="MyContainer.BucketContainer"/>
 
         <div>
-            <input type="button" class = "lang" id = 'butEn' onclick=setAttr('lang','en') value=""/>
-            <input type="button" class = "lang" id = 'butRu' onclick=setAttr('lang','ru') value=""/>
-            <input type="button" class = "lang" id = 'butFr' onclick=setAttr('lang','fr') value=""/>
-
             <c:if test="${empty pageContext.request.parameterMap.lang[0]}">
                 <c:if test="${empty cookie.lang.value}">
                     <fmt:setLocale value='ru'/>
